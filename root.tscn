@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://0uvvn7u8fffp"]
+
+[ext_resource type="Script" uid="uid://djtuaft4wvfm" path="res://root.gd" id="1_pq8q7"]
+[ext_resource type="PackedScene" uid="uid://c37gvunodskee" path="res://testscene.tscn" id="2_pyidc"]
+
+[node name="Node3D" type="Node3D" unique_id=790539646]
+script = ExtResource("1_pq8q7")
+root = ExtResource("2_pyidc")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1272565535]
+transform = Transform3D(1, 0, 0, 0, 0.93072426, 0.36572164, 0, -0.36572164, 0.93072426, 0, 1, 2)
