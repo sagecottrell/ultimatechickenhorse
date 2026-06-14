@@ -20,17 +20,31 @@ process_physics_priority = 300
 script = ExtResource("3_vvh5c")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="GUI" type="CanvasLayer" parent="." unique_id=140744919]
+[node name="ServerGUI" type="CanvasLayer" parent="." unique_id=140744919]
+visible = false
 
-[node name="Control" type="Control" parent="GUI" unique_id=1856376396]
+[node name="Control" type="Control" parent="ServerGUI" unique_id=1856376396]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ClientGUI" type="CanvasLayer" parent="." unique_id=586921557]
+visible = false
+
+[node name="Control" type="Control" parent="ClientGUI" unique_id=701864361]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu" type="CanvasLayer" parent="." unique_id=1809034703]
+layer = 100
+
 [node name="Debug" type="CanvasLayer" parent="." unique_id=1804971164]
 layer = 200
 
-[node name="Menu" type="CanvasLayer" parent="." unique_id=1809034703]
-
 [node name="World" type="Node3D" parent="." unique_id=2112108601]
+
+[connection signal="on_client" from="Multiplayer" to="." method="_on_multiplayer_on_client"]
+[connection signal="on_host" from="Multiplayer" to="." method="_on_multiplayer_on_host"]

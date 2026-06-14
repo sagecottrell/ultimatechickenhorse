@@ -6,6 +6,7 @@
 script = ExtResource("1_xbtfq")
 
 [node name="UI" type="Control" parent="." unique_id=371793306]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

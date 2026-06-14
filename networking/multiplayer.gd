@@ -1,9 +1,14 @@
 # multiplayer.gd
 extends Node
 
-const PORT = 4433
+const PORT = 9999
+
+signal on_host()
+signal on_client()
 
 func _ready():
+	# Start paused
+	get_tree().paused = true
 	# You can save bandwidth by disabling server relay and peer notifications.
 	multiplayer.server_relay = false
 
@@ -21,9 +26,7 @@ func _on_host_pressed():
 		OS.alert("Failed to start multiplayer server.")
 		return
 	multiplayer.multiplayer_peer = peer
-	print("hosting")
-	start_game()
-
+	host_start_game()
 
 func _on_connect_pressed():
 	# Start as client.
@@ -31,24 +34,29 @@ func _on_connect_pressed():
 	if txt == "":
 		OS.alert("Need a remote to connect to.")
 		return
+	prints("connecting to", txt)
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client(txt, PORT)
+	var err = peer.create_client(txt, PORT)
+	if err != Error.OK:
+		OS.alert("client create: " + String(err))
+		return
 	
 	$UI.process_mode = Node.PROCESS_MODE_DISABLED
-	var t = 0
-	while peer.get_connection_status() != MultiplayerPeer.CONNECTION_CONNECTED and t < 5:
-		await get_tree().create_timer(0.1).timeout
-		t += 0.1
-	$UI.process_mode = Node.PROCESS_MODE_INHERIT
-	
-	if peer.get_connection_status() != MultiplayerPeer.CONNECTION_CONNECTED:
-		OS.alert("Failed to start multiplayer client.")
-		return
+		
 	multiplayer.multiplayer_peer = peer
+	multiplayer.connected_to_server.connect(client_start_game)
+
+
+func host_start_game():
+	# Hide the UI and unpause to start the game.
+	prints("hosting", multiplayer.multiplayer_peer.get_connection_status())
+	$UI.hide()
+	get_tree().paused = false
+	on_host.emit()
+
+func client_start_game():
 	print("client connected")
-	start_game()
-
-
-func start_game():
 	# Hide the UI and unpause to start the game.
 	$UI.hide()
+	get_tree().paused = false
+	on_client.emit()

@@ -10,7 +10,6 @@ func _ready() -> void:
 func pack_and_send(node: Node3D):
 	var scene = PackedScene.new()
 	scene.pack(node)
-	
 	send_bytes.rpc(var_to_bytes_with_objects(scene))
 
 @rpc()
@@ -24,3 +23,15 @@ func change_scene(scene: PackedScene):
 		child.queue_free()
 	
 	world.add_child(scene.instantiate())
+
+
+func _on_multiplayer_on_client() -> void:
+	pass # Replace with function body.
+
+func _on_client_connect(_id: int):
+	pack_and_send($World.get_child(0))
+
+func _on_multiplayer_on_host() -> void:
+	# send_bytes.rpc(var_to_bytes_with_objects(root))
+	$World.add_child(root.instantiate())
+	multiplayer.peer_connected.connect(_on_client_connect)
