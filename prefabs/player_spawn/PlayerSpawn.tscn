@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://x18ax2thkbko"]
+
+[ext_resource type="Script" uid="uid://dmfgkiqge2gqt" path="res://prefabs/player_spawn/player_spawn.gd" id="1_jef56"]
+[ext_resource type="PackedScene" uid="uid://w413hrs7f8nf" path="res://prefabs/player_spawn/spawn.gltf" id="2_xhgq5"]
+[ext_resource type="Material" uid="uid://bgydemcehiqgj" path="res://prefabs/player_spawn/spawn_marker_material.tres" id="3_err2u"]
+
+[node name="PlayerSpawn" type="Node3D" unique_id=1298073336]
+script = ExtResource("1_jef56")
+
+[node name="blockbench_export" parent="." unique_id=1362115131 instance=ExtResource("2_xhgq5")]
+
+[node name="armature" parent="blockbench_export/root/armature/Skeleton3D" parent_id_path=PackedInt32Array(1362115131, 23589509) index="0" unique_id=1865919820]
+surface_material_override/0 = ExtResource("3_err2u")
+
+[editable path="blockbench_export"]

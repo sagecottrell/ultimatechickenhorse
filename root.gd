@@ -2,6 +2,7 @@ extends Node3D
 
 
 static var PlayerIds: Dictionary[int, PlayerInfo] = {}
+static var PlayerList: Array[int] = []
 
 func _ready() -> void:
 	$ServerGUI.visible = false
@@ -37,6 +38,7 @@ func send_player_info(json: String):
 	var sender_id = multiplayer.get_remote_sender_id()
 	var info: PlayerInfo = PlayerInfo.from_json(json)
 	PlayerIds[sender_id] = info
+	PlayerList.append(sender_id)
 	
 	var display: PlayerInfoDisplay = preload("res://server/PlayerInfoDisplay.tscn").instantiate()
 	display.set_info(info)
