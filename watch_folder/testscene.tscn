@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_bqvsh"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_1dey0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_0kh3j"]
+[ext_resource type="Script" uid="uid://dgsdjeok8npq5" path="res://prefabs/RandomPosition.gd" id="5_0kh3j"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
 panorama = ExtResource("1_1dey0")
@@ -46,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 mesh = SubResource("BoxMesh_jotil")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=440117991]
-transform = Transform3D(0.21919148, -0.14731133, -0.96449697, -0.6215675, 0.74089533, -0.25441718, 0.75206983, 0.6552659, 0.070833996, -2.301617, 0.24427092, 0.867517)
+transform = Transform3D(0.21919148, -0.14731133, -0.96449697, -0.6215675, 0.74089533, -0.25441718, 0.75206983, 0.6552659, 0.070833996, -2.301617, 0.6538664, -3.132483)
 mesh = SubResource("BoxMesh_jotil")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1283653073]
@@ -54,3 +55,15 @@ transform = Transform3D(-1, 0, 8.742278e-08, 3.527905e-08, 0.91495967, 0.4035453
 script = ExtResource("2_1dey0")
 tween_resource = SubResource("Resource_mawog")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="RandomPosition" type="Node3D" parent="." unique_id=93446461 node_paths=PackedStringArray("targets")]
+script = ExtResource("5_0kh3j")
+interval_seconds = 1.0
+targets = [NodePath("../Star")]
+metadata/_custom_type_script = "uid://dgsdjeok8npq5"
+
+[node name="Marker3D" type="Marker3D" parent="RandomPosition" unique_id=236351984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4752655, 0, 1.6933756)
+
+[node name="Marker3D2" type="Marker3D" parent="RandomPosition" unique_id=866107998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2465055, 1.5942855, 0)
