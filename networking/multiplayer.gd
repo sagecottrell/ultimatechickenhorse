@@ -30,6 +30,10 @@ func _on_host_pressed():
 	host_start_game()
 
 func _on_connect_pressed():
+	if not %PlayerName.text:
+		OS.alert("must enter a name")
+		return
+	
 	# Start as client.
 	var txt : String = %Remote.text
 	if txt == "":
