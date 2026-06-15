@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://c37gvunodskee"]
-
-[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_jotil"]
-
-[node name="Testscene" type="Node3D" unique_id=1867083525]
-
-[node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_jotil")]

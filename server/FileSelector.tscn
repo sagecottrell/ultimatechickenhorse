@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ddbkdcb52fgu"]
+
+[ext_resource type="Script" uid="uid://dvuevrjjj632j" path="res://server/file_selector.gd" id="1_upo5h"]
+
+[node name="FileSelector" type="PanelContainer" unique_id=1974063771]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_upo5h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1629603366]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer" unique_id=1761602132]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "res://test.tscn [color=green]NEW![/color]"
+horizontal_alignment = 2
+
+[node name="Send" type="Button" parent="HBoxContainer" unique_id=141250811]
+layout_mode = 2
+text = "Send"
+
+[connection signal="pressed" from="HBoxContainer/Send" to="." method="_on_send_pressed"]

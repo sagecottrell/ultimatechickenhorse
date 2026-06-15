@@ -30,7 +30,8 @@ enabled=PackedStringArray("res://addons/character-controller/plugin.cfg", "res:/
 [file_customization]
 
 folder_colors={
-"res://debug/": "yellow"
+"res://debug/": "yellow",
+"res://watch_folder/": "pink"
 }
 
 [input]
