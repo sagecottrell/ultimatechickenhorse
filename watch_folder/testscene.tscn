@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="1_1dey0"]
 [ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_bqvsh"]
+[ext_resource type="Script" uid="uid://bep2mitlubi2y" path="res://baseScene.gd" id="1_k8yl0"]
 [ext_resource type="Script" uid="uid://dgsdjeok8npq5" path="res://prefabs/RandomPosition.gd" id="5_0kh3j"]
 [ext_resource type="Texture2D" uid="uid://cbkig6ttx0fxg" path="res://addons/character-controller/example/main/textures/grass.png" id="5_df8lk"]
 [ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/player_spawn/PlayerSpawn.tscn" id="5_pxpqt"]
@@ -32,7 +33,12 @@ texture_filter = 0
 [sub_resource type="Resource" id="Resource_ix6w0"]
 script = ExtResource("7_k8yl0")
 
+[sub_resource type="GDScript" id="GDScript_pxpqt"]
+script/source = "extends MultiplayerSpawner
+"
+
 [node name="Testscene" type="Node3D" unique_id=1867083525]
+script = ExtResource("1_k8yl0")
 
 [node name="Lighting" type="Node" parent="." unique_id=889023895]
 
@@ -80,3 +86,7 @@ script = ExtResource("6_pxpqt")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2070496638]
+spawn_path = NodePath("..")
+script = SubResource("GDScript_pxpqt")

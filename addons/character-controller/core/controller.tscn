@@ -12,17 +12,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_elntb"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 2
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 2
-properties/2/path = NodePath(".:scale")
-properties/2/spawn = true
-properties/2/replication_mode = 2
-
 [node name="CharacterController3D" type="CharacterBody3D" unique_id=524284603]
 floor_snap_length = 0.5
 script = ExtResource("1_snllq")
@@ -60,6 +49,3 @@ collision_mask = 8
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=967940243]
-replication_config = SubResource("SceneReplicationConfig_elntb")

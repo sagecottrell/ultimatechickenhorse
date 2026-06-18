@@ -1,3 +1,4 @@
+class_name Root
 extends Node3D
 
 
@@ -14,8 +15,6 @@ func pack_and_send(fp: String):
 	
 	var world = Str2Node.tscn_string_to_node(file.get_as_text())
 	change_scene(world)
-	await get_tree().create_timer(1).timeout
-	spawn_players(world)
 
 @rpc()
 func push_scene_to_all(txt: String):
@@ -28,7 +27,6 @@ func change_scene(scene: Node):
 		child.queue_free()
 	
 	world.add_child(scene)
-	$MultiplayerSpawner.set_spawn_path(scene.get_path())
 
 func _on_multiplayer_on_client() -> void:
 	# on the client side, when the client starts up
@@ -57,30 +55,3 @@ func _on_multiplayer_on_host() -> void:
 	# on the server side, when the server starts up
 	$ServerGUI.visible = true
 	multiplayer.peer_connected.connect(_on_client_connect)
-
-
-func spawn_players(world: Node3D):
-	var spawns: Array[Node3D] = []
-	for child in world.get_children():
-		if child is PlayerSpawn:
-			spawns.append(child)
-	prints("PlayerList", PlayerList)
-	for player_id in PlayerList:
-		add_player(world, player_id)
-	for pair in Zip.zip(spawns, get_tree().get_nodes_in_group("Player"), false):
-		var spawn = pair[0]
-		var player: Player = pair[1]
-		player.position = spawn.position
-	
-
-func add_player(world: Node3D, peer_id: int):
-	var has_id = peer_id in get_tree().get_nodes_in_group("Player").map(func(node): int(node.name))
-	if has_id:
-		return
-	
-	var player_scene = preload("res://prefabs/player/Player.tscn")
-	var player: Node3D = player_scene.instantiate()
-	player.add_to_group("Player")
-	player.name = str(peer_id)
-	# player.global_transform = spawn.global_transform
-	world.add_child(player)

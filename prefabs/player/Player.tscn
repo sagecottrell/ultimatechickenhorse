@@ -9,6 +9,20 @@
 [sub_resource type="Resource" id="Resource_mamfr"]
 script = ExtResource("4_xgtsh")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:idling_ground")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [sub_resource type="Animation" id="Animation_revio"]
 resource_name = "idle-loop"
 length = 2.0
@@ -88,10 +102,10 @@ animation = &"walk"
 animation = &"idle"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mamfr"]
-filter_enabled = true
 filters = ["Left Leg2", "Right Leg2", "Waist/Left Arm2", "Waist/Right Arm2"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xgtsh"]
+graph_offset = Vector2(-25.809937, 85.06003)
 nodes/output/position = Vector2(600, 80)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_35c0j")
 nodes/Animation/position = Vector2(140, 100)
@@ -111,21 +125,16 @@ input_sprint_action_name = "move_sprint"
 input_jump_action_name = "move_jump"
 input_crouch_action_name = "move_crouch"
 underwater_env = null
-
-[node name="Collision" parent="." index="0" unique_id=727390688]
-process_mode = 2
+idling_ground = false
 
 [node name="Crouch Ability 3D" parent="." index="4" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
 collision = NodePath("../Collision")
 head_check = NodePath("../Head Check")
 
-[node name="Head" parent="." index="8" unique_id=1782836025]
-process_mode = 3
-
-[node name="Head Bob" parent="Head" index="0" unique_id=1006493639 node_paths=PackedStringArray("head")]
+[node name="Head Bob" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="0" unique_id=1006493639 node_paths=PackedStringArray("head")]
 head = NodePath("../FirstPersonCamera")
 
-[node name="FirstPersonCamera" type="Node3D" parent="Head" index="2" unique_id=770272565]
+[node name="FirstPersonCamera" type="Node3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="2" unique_id=770272565]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
 script = ExtResource("3_mamfr")
@@ -134,37 +143,37 @@ look_at_mode = 1
 tween_resource = SubResource("Resource_mamfr")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="ThirdPersonCamera" type="Node3D" parent="Head" index="3" unique_id=475707984]
+[node name="ThirdPersonCamera" type="Node3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="3" unique_id=475707984]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_mamfr")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="MultiplayerSynchronizer" parent="." index="9" unique_id=967940243]
-process_mode = 3
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9" unique_id=967940243]
+delta_interval = 0.01
+replication_config = SubResource("SceneReplicationConfig_elntb")
 
 [node name="VisualRoot" type="Node3D" parent="." index="10" unique_id=1340713338]
-process_mode = 3
 
 [node name="model" parent="VisualRoot" index="0" unique_id=239091475 instance=ExtResource("2_qq40p")]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Head" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(239091475, 1995490963) index="0" unique_id=1259229819]
+[node name="Head" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(239091475, 1850205958) index="0" unique_id=19332452]
 visibility_range_begin = 1.0
 
-[node name="LookAtModifier3D" type="LookAtModifier3D" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(239091475, 1995490963) index="1" unique_id=1745045964]
+[node name="LookAtModifier3D" type="LookAtModifier3D" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(239091475, 1850205958) index="1" unique_id=1745045964]
 target_node = NodePath("../../../../../Head/LookatTarget")
 bone_name = "Head_2"
 bone = 0
 forward_axis = 5
 
-[node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(239091475, 512443224) index="0" unique_id=1826255504]
-bones/2/rotation = Quaternion(0.028236682, 0, 0, 0.99960124)
-bones/3/rotation = Quaternion(-0.028236682, 0, 0, 0.99960124)
+[node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(239091475, 298926244) index="0" unique_id=1235087806]
+bones/2/rotation = Quaternion(0.026008526, 0, 0, 0.99966174)
+bones/3/rotation = Quaternion(-0.026008526, 0, 0, 0.99966174)
 
-[node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=417970730]
+[node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=854025456]
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_gt5yq")
 

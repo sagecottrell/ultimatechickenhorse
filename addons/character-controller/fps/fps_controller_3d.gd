@@ -29,8 +29,8 @@ class_name FPSController3D
 ## Mouse Sensitivity
 @export var mouse_sensitivity := 2.0:
 	set(value):
-			if head != null:
-				head.mouse_sensitivity = value
+		if head != null:
+			head.mouse_sensitivity = value
 
 ## Maximum vertical angle the head can aim
 @export var vertical_angle_limit := 90.0

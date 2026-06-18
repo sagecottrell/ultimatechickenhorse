@@ -14,30 +14,33 @@ extends FPSController3D
 
 @export var underwater_env: Environment
 
-var idling_ground: bool = false
+@export var idling_ground: bool = false:
+	set(v):
+		if is_node_ready():
+			if v and not idling_ground:
+				idle()
+			elif not v and idling_ground:
+				walk()
+		idling_ground = v
 
-func _enter_tree() -> void:
-	set_physics_process(false)
-	set_process(false)
-	set_process_input(false)
-	
-	await get_tree().create_timer(1).timeout
-	
-	set_multiplayer_authority(int(name))
-	if multiplayer.get_unique_id() == int(name):
-		prints("id:", multiplayer.get_unique_id(), "name:", name)
-		set_process(true)
-		set_process_input(true)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		$Head/FirstPersonCamera.priority = 100
+
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
 	setup()
+	
+	if is_multiplayer_authority():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		$Head/FirstPersonCamera.priority = 100
 	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
 
 func _physics_process(delta):
+	if not is_multiplayer_authority():
+		return
+		
 	var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	
 	if is_valid_input:
@@ -50,10 +53,8 @@ func _physics_process(delta):
 		
 		if input_axis.is_zero_approx() and not idling_ground:
 			idling_ground = true
-			idle()
 		elif not input_axis.is_zero_approx() and idling_ground:
 			idling_ground = false
-			walk()
 		
 		move(delta, input_axis, input_jump, input_crouch, input_sprint, input_swim_down, input_swim_up)
 	else:
@@ -63,6 +64,9 @@ func _physics_process(delta):
 
 
 func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
+		
 	# Mouse look (only if the mouse is captured).
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.screen_relative)

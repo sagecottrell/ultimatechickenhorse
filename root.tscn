@@ -62,9 +62,6 @@ file_pattern = ".tscn"
 directory_list = PackedStringArray("res://watch_folder")
 metadata/_custom_type_script = "uid://btdvny6i4c55h"
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=587828040]
-_spawnable_scenes = PackedStringArray("uid://bf600sfpstu3e")
-
 [connection signal="on_client" from="Multiplayer" to="." method="_on_multiplayer_on_client"]
 [connection signal="on_host" from="Multiplayer" to="." method="_on_multiplayer_on_host"]
 [connection signal="on_press_send" from="ServerGUI/HBoxContainer/FileList" to="." method="pack_and_send"]
