@@ -170,8 +170,8 @@ bone = 0
 forward_axis = 5
 
 [node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(239091475, 298926244) index="0" unique_id=1235087806]
-bones/2/rotation = Quaternion(0.026008526, 0, 0, 0.99966174)
-bones/3/rotation = Quaternion(-0.026008526, 0, 0, 0.99966174)
+bones/2/rotation = Quaternion(-0.06423547, 0, 0, 0.9979348)
+bones/3/rotation = Quaternion(0.06423547, 0, 0, 0.9979348)
 
 [node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=854025456]
 process_mode = 3

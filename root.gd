@@ -8,6 +8,7 @@ static var PlayerList: Array[int] = []
 func _ready() -> void:
 	$ServerGUI.visible = false
 	$ClientGUI.visible = false
+	multiplayer.server_relay = true
 
 func pack_and_send(fp: String):
 	var file = FileAccess.open(fp, FileAccess.READ)
