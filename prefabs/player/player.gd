@@ -29,6 +29,11 @@ extends FPSController3D
 
 @export var spawn_point: Node3D
 
+func _reset():
+	head.actual_rotation = Vector3.ZERO
+	global_transform = spawn_point.global_transform
+	velocity = Vector3.ZERO
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 

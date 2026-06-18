@@ -31,3 +31,8 @@ func spawn_players():
 		var player_info = Root.PlayerIds[player_id]
 		var info = {"at": spawn.get_path(), "pid": player_id, "color": player_info.color, "name": player_info.name}
 		$MultiplayerSpawner.spawn(info)
+
+
+func _on_deathplane_body_entered(body: Node3D) -> void:
+	if body is Player:
+		body._reset()

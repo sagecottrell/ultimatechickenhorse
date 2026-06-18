@@ -116,7 +116,7 @@ nodes/Blend2/position = Vector2(360, 60)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
 
 [node name="Player" unique_id=1167805719 instance=ExtResource("1_dgc4i")]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("2_1kmib")
 input_back_action_name = "move_backward"
 input_forward_action_name = "move_forward"
@@ -183,8 +183,8 @@ bone = 0
 forward_axis = 5
 
 [node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(1858941949, 1631955175) index="0" unique_id=818624400]
-bones/2/rotation = Quaternion(0.056872617, 0, 0, 0.99838144)
-bones/3/rotation = Quaternion(-0.056872617, 0, 0, 0.99838144)
+bones/2/rotation = Quaternion(-0.0037398357, 0, 0, 0.9999931)
+bones/3/rotation = Quaternion(0.0037398357, 0, 0, 0.9999931)
 
 [node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=632560122]
 process_mode = 3
