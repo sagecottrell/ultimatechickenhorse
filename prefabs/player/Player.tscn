@@ -1,13 +1,13 @@
-[gd_scene format=3 uid="uid://bf600sfpstu3e"]
+[gd_scene format=3 uid="uid://bovaqvn3hwxp2"]
 
-[ext_resource type="PackedScene" uid="uid://8oy3xm2sff8" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_wuy1y"]
-[ext_resource type="Script" uid="uid://bm7pjd2tyd4wt" path="res://prefabs/player/player.gd" id="2_1nynx"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_64pgi"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_0ep8a"]
-[ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="5_70wo7"]
+[ext_resource type="PackedScene" uid="uid://8oy3xm2sff8" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_dgc4i"]
+[ext_resource type="Script" uid="uid://bm7pjd2tyd4wt" path="res://prefabs/player/player.gd" id="2_1kmib"]
+[ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="2_qq40p"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_mamfr"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_xgtsh"]
 
 [sub_resource type="Resource" id="Resource_mamfr"]
-script = ExtResource("4_0ep8a")
+script = ExtResource("4_xgtsh")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
 properties/0/path = NodePath(".:position")
@@ -115,9 +115,9 @@ nodes/Blend2/position = Vector2(360, 60)
 "nodes/Animation 2/position" = Vector2(140, 360)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
 
-[node name="Player" unique_id=1167805719 instance=ExtResource("1_wuy1y")]
+[node name="Player" unique_id=1167805719 instance=ExtResource("1_dgc4i")]
 collision_layer = 2
-script = ExtResource("2_1nynx")
+script = ExtResource("2_1kmib")
 input_back_action_name = "move_backward"
 input_forward_action_name = "move_forward"
 input_left_action_name = "move_left"
@@ -143,7 +143,7 @@ head = NodePath("../FirstPersonCamera")
 [node name="FirstPersonCamera" type="Node3D" parent="Head" index="2" unique_id=770272565]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
-script = ExtResource("3_64pgi")
+script = ExtResource("3_mamfr")
 priority = 1
 look_at_mode = 1
 tween_resource = SubResource("Resource_mamfr")
@@ -152,7 +152,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="ThirdPersonCamera" type="Node3D" parent="Head" index="3" unique_id=475707984]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-script = ExtResource("3_64pgi")
+script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_mamfr")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
@@ -166,31 +166,27 @@ billboard = 1
 no_depth_test = true
 text = "Tester"
 
-[node name="Ranking" type="Label3D" parent="." index="11" unique_id=165637101]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6034306, 0)
-billboard = 1
-no_depth_test = true
-text = "loser"
-font_size = 92
+[node name="VisualRoot" type="Node3D" parent="." index="11" unique_id=1340713338]
 
-[node name="VisualRoot" type="Node3D" parent="." index="12" unique_id=1340713338]
-
-[node name="model" parent="VisualRoot" index="0" unique_id=1858941949 instance=ExtResource("5_70wo7")]
+[node name="model" parent="VisualRoot" index="0" unique_id=1858941949 instance=ExtResource("2_qq40p")]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="LookatModifier" type="LookAtModifier3D" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(1858941949, 1307811513) index="1" unique_id=1745045964]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+[node name="Head" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(1858941949, 703069270) index="0" unique_id=12960760]
+visibility_range_begin = 1.0
+
+[node name="LookatModifier" type="LookAtModifier3D" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(1858941949, 703069270) index="1" unique_id=1745045964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 target_node = NodePath("../../../../../Head/LookatTarget")
 bone_name = "Head_2"
 bone = 0
 forward_axis = 5
 
-[node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(1858941949, 544021897) index="0" unique_id=1027408157]
-bones/2/rotation = Quaternion(0.01649215, 0, 0, 0.9998641)
-bones/3/rotation = Quaternion(-0.01649215, 0, 0, 0.9998641)
+[node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(1858941949, 1631955175) index="0" unique_id=818624400]
+bones/2/rotation = Quaternion(-0.0037398357, 0, 0, 0.9999931)
+bones/3/rotation = Quaternion(0.0037398357, 0, 0, 0.9999931)
 
-[node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=1025116469]
+[node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=632560122]
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_gt5yq")
 

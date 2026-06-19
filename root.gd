@@ -38,6 +38,7 @@ func pre_level_push():
 func push_scene_to_all(txt: String):
 	change_scene(Str2Node.tscn_string_to_node(txt))
 	$LevelSwitch.visible = false
+	$ClientGUI.visible = false
 
 
 func change_scene(scene: BaseScene):

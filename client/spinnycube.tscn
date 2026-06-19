@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://do4twu8peuk88"]
+
+[ext_resource type="Script" uid="uid://c65pvwysto35f" path="res://client/spinnycube.gd" id="1_3xgh1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xgh1"]
+transparency = 1
+albedo_color = Color(0.41568628, 1, 1, 0.6431373)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbdtc"]
+material = SubResource("StandardMaterial3D_3xgh1")
+flip_faces = true
+
+[sub_resource type="Environment" id="Environment_vyht1"]
+background_mode = 1
+ambient_light_source = 1
+
+[node name="Spinnycube" type="Node3D" unique_id=1896426331]
+script = ExtResource("1_3xgh1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=748336506]
+transform = Transform3D(-0.75875235, 0.43806505, -0.48221982, 0.5000024, 0.8660282, 0, 0.41761327, -0.24110955, -0.87613535, 0, 0, 0)
+mesh = SubResource("BoxMesh_sbdtc")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=983186514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0404615)
+environment = SubResource("Environment_vyht1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1497912134]
+transform = Transform3D(1, 0, 0, 0, 0.9832584, 0.18221694, 0, -0.18221694, 0.9832584, 0, 1.1368319, 2.7129042)

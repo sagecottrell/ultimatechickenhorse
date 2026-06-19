@@ -63,10 +63,10 @@ class_name FPSController3D
 @export var angle_limit_for_rotation := 0.1
 
 ## [HeadMovement3D] reference, where the rotation of the camera sight is calculated
-@onready var head: HeadMovement3D = get_node(NodePath("Head"))
+@onready var head: HeadMovement3D = $Head
 
 ## HeadBob reference
-@onready var head_bob: HeadBob = get_node(NodePath("Head/Head Bob"))
+@onready var head_bob: HeadBob = $"Head/Head Bob"
 
 
 ## Configure mouse sensitivity, rotation limit angle and head bob

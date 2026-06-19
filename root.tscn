@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_vvh5c"]
 [ext_resource type="Script" uid="uid://btdvny6i4c55h" path="res://DirectoryWatcher/DirectoryWatcher.gd" id="4_28aoi"]
 [ext_resource type="Script" uid="uid://coe0x2enkov31" path="res://server/file_list.gd" id="4_jnlp7"]
-[ext_resource type="Texture2D" uid="uid://bwsvg5ikog622" path="res://prefabs/player/player_0.png" id="6_l8v81"]
+[ext_resource type="PackedScene" uid="uid://do4twu8peuk88" path="res://client/spinnycube.tscn" id="5_vyht1"]
+[ext_resource type="Texture2D" uid="uid://c6ahqcj8kboeq" path="res://prefabs/player/player.png" id="6_vyht1"]
 
 [node name="root" type="Node3D" unique_id=790539646]
 script = ExtResource("1_pq8q7")
@@ -48,6 +49,28 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ClientGUI/Control" unique_id=388235931]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ClientGUI/Control/SubViewportContainer" unique_id=1082476330]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Spinnycube" parent="ClientGUI/Control/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("5_vyht1")]
+
+[node name="Label" type="Label" parent="ClientGUI/Control" unique_id=2042897658]
+layout_mode = 0
+offset_left = 974.0
+offset_top = 581.0
+offset_right = 1107.0
+offset_bottom = 604.0
+text = "waiting on host..."
+
 [node name="LevelSwitch" type="CanvasLayer" parent="." unique_id=332940098]
 layer = 20
 
@@ -61,7 +84,7 @@ offset_bottom = 648.0
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("6_l8v81")
+texture = ExtResource("6_vyht1")
 
 [node name="PanelContainer" type="PanelContainer" parent="LevelSwitch/PanelContainer" unique_id=70211816]
 layout_mode = 1
