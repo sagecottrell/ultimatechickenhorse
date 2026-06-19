@@ -1,6 +1,6 @@
 extends Node3D
 
-signal collide(player: FPSController3D)
+signal collide(player: Player)
 
 @export var enabled : bool = true
 
@@ -15,5 +15,5 @@ func _process(delta: float) -> void:
 		$star.visible = false
 
 func on_collide(area: Node3D):
-	if area is FPSController3D and enabled:
+	if area is Player and enabled:
 		collide.emit(area)

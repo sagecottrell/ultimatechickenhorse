@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bgnb5bwdh3a5b"]
+
+[ext_resource type="PackedScene" uid="uid://c4vunamk4qxb7" path="res://prefabs/3x3platform/3x3platform.gltf" id="1_4snm1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vccua"]
+size = Vector3(4, 0.5, 4)
+
+[node name="3x3Platform" type="AnimatableBody3D" unique_id=23620910]
+
+[node name="blockbench_export" parent="." unique_id=1538999427 instance=ExtResource("1_4snm1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24998754, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=602836669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017089844, 0, 0)
+shape = SubResource("BoxShape3D_vccua")

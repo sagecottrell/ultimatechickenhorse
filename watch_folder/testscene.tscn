@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="1_1dey0"]
 [ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/Star.tscn" id="1_bqvsh"]
 [ext_resource type="Script" uid="uid://bep2mitlubi2y" path="res://baseScene.gd" id="1_k8yl0"]
-[ext_resource type="Script" uid="uid://dgsdjeok8npq5" path="res://prefabs/RandomPosition.gd" id="5_0kh3j"]
 [ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/PlayerSpawn.tscn" id="5_pxpqt"]
 [ext_resource type="PackedScene" uid="uid://dh7wg5y8ky5d8" path="res://addons/character-controller/example/main/water_area_3d.tscn" id="6_1nuv2"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_pxpqt"]
@@ -104,20 +103,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 250.0
 
 [node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_bqvsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0596063, 2.0261462, 0.3487022)
-
-[node name="RandomPosition" type="Node3D" parent="." unique_id=93446461 node_paths=PackedStringArray("targets")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.056133, 0)
-script = ExtResource("5_0kh3j")
-interval_seconds = 1.0
-targets = [NodePath("../Star")]
-metadata/_custom_type_script = "uid://dgsdjeok8npq5"
-
-[node name="Marker3D" type="Marker3D" parent="RandomPosition" unique_id=236351984]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4752655, -38.274277, -12.306624)
-
-[node name="Marker3D2" type="Marker3D" parent="RandomPosition" unique_id=866107998]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2465055, -40.053593, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.059607, 17.940495, 2.6044865)
 
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
 transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 14.432711, -13.682053)
@@ -519,4 +505,5 @@ shape = SubResource("ConcavePolygonShape3D_qhf25")
 [node name="Area3D" parent="." unique_id=1903803035 instance=ExtResource("6_1nuv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30807197, 6.483181, 5.9637203)
 
+[connection signal="collide" from="Star" to="." method="_on_star_collide"]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]

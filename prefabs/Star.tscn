@@ -13,6 +13,7 @@ script = ExtResource("1_5hr4g")
 transform = Transform3D(-0.45084745, 0, 0.8927656, 0, 1, 0, -0.8927656, 0, -0.45084745, 0, 0, 0)
 
 [node name="Collision" type="Area3D" parent="." unique_id=570955464]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=603265922]
 shape = SubResource("SphereShape3D_5hr4g")

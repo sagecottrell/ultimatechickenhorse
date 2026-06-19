@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://djrn33kg2elg6"]
+
+[ext_resource type="PackedScene" uid="uid://bgnb5bwdh3a5b" path="res://prefabs/3x3Platform.tscn" id="1_hmekm"]
+[ext_resource type="Script" uid="uid://d17wtyh035ct8" path="res://prefabs/path_follow_3d.gd" id="1_l5lmh"]
+
+[sub_resource type="Curve3D" id="Curve3D_hmekm"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.8274791, 0, -6.4396253, 0, 0, 0, 0, 0, 0, 15.467252, 0, -6.232962, 0, 0, 0, 0, 0, 0, 16.93686, 0, 4.1920524, 0, 0, 0, 0, 0, 0, 11.012513, 0, 9.289746, 0, 0, 0, 0, 0, 0, 2.3785808, 0, 8.463093, 0, 0, 0, 0, 0, 0, -5.612399, 0, -2.9952369),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="MovingPlatform" type="Node3D" unique_id=2056712890]
+
+[node name="Path3D" type="Path3D" parent="." unique_id=346949891]
+curve = SubResource("Curve3D_hmekm")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=644645582]
+transform = Transform3D(-0.015149769, 0, -0.999885, 0, 1, 0, 0.999885, 0, -0.015149769, 1.8274791, 0, -6.4396253)
+tilt_enabled = false
+script = ExtResource("1_l5lmh")
+
+[node name="3x3Platform" parent="Path3D/PathFollow3D" unique_id=23620910 instance=ExtResource("1_hmekm")]

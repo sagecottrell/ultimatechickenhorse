@@ -1,4 +1,7 @@
+class_name BaseScene
 extends Node3D
+
+signal on_win()
 
 func _enter_tree():
 	$MultiplayerSpawner.spawn_function = spawn_player
@@ -10,7 +13,7 @@ func _ready():
 
 func spawn_player(info: Dictionary):
 	var spawn: Node3D = get_node(info.at)
-	var player_scene = preload("res://prefabs/player/Player.tscn")
+	var player_scene = preload("res://prefabs/Player.tscn")
 	var player: Player = player_scene.instantiate()
 	player.add_to_group("Player")
 	player.name = str(info.pid)
@@ -36,3 +39,11 @@ func spawn_players():
 func _on_deathplane_body_entered(body: Node3D) -> void:
 	if body is Player:
 		body._reset()
+
+
+func _on_star_collide(player: Player) -> void:
+	if player.name.to_int() != multiplayer.get_unique_id():
+		return
+	$Star.queue_free()
+	on_win.emit()
+	
