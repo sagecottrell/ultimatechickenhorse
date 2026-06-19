@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://oeilmdfn02sj"]
 
-[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_snpiq"]
+[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/Star.tscn" id="1_snpiq"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_15fo5"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_q5f6h"]
 [ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="4_15fo5"]
-[ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/player_spawn/PlayerSpawn.tscn" id="5_q5f6h"]
+[ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/PlayerSpawn.tscn" id="5_q5f6h"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_snpiq"]
 

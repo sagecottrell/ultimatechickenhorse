@@ -116,7 +116,7 @@ signal stopped_floating
 ## Jump/Impulse height
 @export var jump_height : float = 10.0
 
-@export var coyote_time_ms : int = 500
+@export var coyote_time_ms : int = 200
 
 
 @export_group("Fly")

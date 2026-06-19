@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c37gvunodskee"]
 
 [ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="1_1dey0"]
-[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_bqvsh"]
+[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/Star.tscn" id="1_bqvsh"]
 [ext_resource type="Script" uid="uid://bep2mitlubi2y" path="res://baseScene.gd" id="1_k8yl0"]
 [ext_resource type="Script" uid="uid://dgsdjeok8npq5" path="res://prefabs/RandomPosition.gd" id="5_0kh3j"]
-[ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/player_spawn/PlayerSpawn.tscn" id="5_pxpqt"]
+[ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/PlayerSpawn.tscn" id="5_pxpqt"]
 [ext_resource type="PackedScene" uid="uid://dh7wg5y8ky5d8" path="res://addons/character-controller/example/main/water_area_3d.tscn" id="6_1nuv2"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_pxpqt"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_k8yl0"]
@@ -40,8 +40,7 @@ script = ExtResource("7_k8yl0")
 script/source = "extends MultiplayerSpawner
 "
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_k8yl0"]
-size = Vector3(327.44922, 2.6242676, 201.31201)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1nuv2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_v5r4t"]
 size = Vector3(8, 4, 4)
@@ -108,28 +107,29 @@ directional_shadow_max_distance = 250.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0596063, 2.0261462, 0.3487022)
 
 [node name="RandomPosition" type="Node3D" parent="." unique_id=93446461 node_paths=PackedStringArray("targets")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.056133, 0)
 script = ExtResource("5_0kh3j")
 interval_seconds = 1.0
 targets = [NodePath("../Star")]
 metadata/_custom_type_script = "uid://dgsdjeok8npq5"
 
 [node name="Marker3D" type="Marker3D" parent="RandomPosition" unique_id=236351984]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4752655, 6.596877, -12.306624)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4752655, -38.274277, -12.306624)
 
 [node name="Marker3D2" type="Marker3D" parent="RandomPosition" unique_id=866107998]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2465055, 4.8175607, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2465055, -40.053593, 12)
 
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 4.5413823, -13.682053)
+transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 14.432711, -13.682053)
 
 [node name="PlayerSpawn2" parent="." unique_id=1114555839 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.339701, 4.0482574, 13.4194565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.339701, 13.769217, 13.4194565)
 
 [node name="PlayerSpawn3" parent="." unique_id=1393393893 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(0.26500082, 0, 0.9642482, 0, 1, 0, -0.9642482, 0, 0.26500082, 17.020115, 3.8625531, 16.383604)
+transform = Transform3D(0.26500082, 0, 0.9642482, 0, 1, 0, -0.9642482, 0, 0.26500082, 17.020115, 13.850567, 16.383604)
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1004881554]
-transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 0, 2.8522682, -5.9266434)
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 0, 12.037247, -5.9266434)
 script = ExtResource("6_pxpqt")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")
@@ -144,66 +144,66 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="deathplane" unique_id=1794330788]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.057617, -41.466576, 10.032959)
-shape = SubResource("BoxShape3D_k8yl0")
+shape = SubResource("WorldBoundaryShape3D_1nuv2")
 debug_color = Color(0.99215686, 0, 0.27058825, 1)
 
 [node name="Floor2" parent="." unique_id=1881543617 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 40, 12, -0.5, 0)
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 40, 12, 8.6849785, 0)
 material_override = ExtResource("9_1nuv2")
 
 [node name="Floor9" parent="." unique_id=562639418 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 40, -11.9786, -0.5, 0)
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 40, -11.9786, 8.6849785, 0)
 material_override = ExtResource("9_1nuv2")
 
 [node name="Floor7" parent="." unique_id=382966588 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(1.73205, -0.5, 0, 1, 0.866025, 0, 0, 0, 15, 3.88, -0.935, 12.5)
+transform = Transform3D(1.73205, -0.5, 0, 1, 0.866025, 0, 0, 0, 15, 3.88, 8.249977, 12.5)
 material_override = ExtResource("9_1nuv2")
 
 [node name="Floor8" parent="." unique_id=589999052 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(1.73205, 0.5, 0, -1, 0.866025, 0, 0, 0, 15, -3.86087, -0.931208, 12.4865)
+transform = Transform3D(1.73205, 0.5, 0, -1, 0.866025, 0, 0, 0, 15, -3.86087, 8.253769, 12.4865)
 material_override = ExtResource("9_1nuv2")
 
 [node name="Floor4" parent="." unique_id=1412975421 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(-6.55671e-07, 0, -10, 0, 5, 0, 15, 0, -4.37114e-07, -0.00529146, -3.47481, 11.9858)
+transform = Transform3D(-6.55671e-07, 0, -10, 0, 5, 0, 15, 0, -4.37114e-07, -0.00529146, 5.710167, 11.9858)
 material_override = ExtResource("10_md8ma")
 
 [node name="Floor10" parent="." unique_id=2009972322 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(-6.55671e-07, 0, -1, 0, 5, 0, 15, 0, -4.37114e-08, 5.00169, -3.47481, -1.26244)
+transform = Transform3D(-6.55671e-07, 0, -1, 0, 5, 0, 15, 0, -4.37114e-08, 5.00169, 5.710167, -1.26244)
 material_override = ExtResource("10_md8ma")
 
 [node name="Floor11" parent="." unique_id=1821850134 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(-6.55671e-07, 0, -1, 0, 5, 0, 15, 0, -4.37114e-08, -4.979, -3.475, -1.262)
+transform = Transform3D(-6.55671e-07, 0, -1, 0, 5, 0, 15, 0, -4.37114e-08, -4.979, 5.70998, -1.262)
 material_override = ExtResource("10_md8ma")
 
 [node name="Floor5" parent="." unique_id=1989621207 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(-4.37114e-07, 0, -10, 0, 1, 0, 10, 0, -4.37114e-07, 0, -5.5497, 0)
+transform = Transform3D(-4.37114e-07, 0, -10, 0, 1, 0, 10, 0, -4.37114e-07, 0, 3.6352768, 0)
 material_override = ExtResource("10_md8ma")
 
 [node name="Floor6" parent="." unique_id=1803514779 instance=ExtResource("8_kgcq4")]
-transform = Transform3D(-2.98942e-07, 0, -10, 0, 1, 0, 6.839, 0, -4.37114e-07, 0, -0.5, -16.512)
+transform = Transform3D(-2.98942e-07, 0, -10, 0, 1, 0, 6.839, 0, -4.37114e-07, 0, 8.6849785, -16.512)
 material_override = ExtResource("9_1nuv2")
 
 [node name="ArenaGeometry" type="Node3D" parent="." unique_id=809497990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.056133, 0)
 
 [node name="Wall" parent="ArenaGeometry" unique_id=549773478 instance=ExtResource("11_eq453")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -39.121155, -20)
 material_override = ExtResource("12_kciqv")
 
 [node name="Wall2" parent="ArenaGeometry" unique_id=2030168854 instance=ExtResource("11_eq453")]
-transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 5.15, 20)
+transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, -39.721153, 20)
 material_override = ExtResource("12_kciqv")
 
 [node name="Wall3" parent="ArenaGeometry" unique_id=2106311810 instance=ExtResource("11_eq453")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 20, 5.75, 0)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 20, -39.121155, 0)
 material_override = ExtResource("12_kciqv")
 
 [node name="Wall4" parent="ArenaGeometry" unique_id=21581764 instance=ExtResource("11_eq453")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -20, 5.75, 0)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -20, -39.121155, 0)
 material_override = ExtResource("12_kciqv")
 
 [node name="Cube" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1940825397]
-transform = Transform3D(1.12259, 0, 0, 0, 1.2, 0, 0, 0, 0.65, 0, 1.8571, -13.8123)
+transform = Transform3D(1.12259, 0, 0, 0, 1.2, 0, 0, 0, 0.65, 0, -43.014053, -13.8123)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_v5r4t")
 
@@ -214,7 +214,7 @@ physics_material_override = ExtResource("13_gbrv7")
 shape = SubResource("ConcavePolygonShape3D_ogpjp")
 
 [node name="Cube4" type="MeshInstance3D" parent="ArenaGeometry" unique_id=521521444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4, -12, -1.92674, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4, -12, -46.797894, -4)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_v5r4t")
 
@@ -225,7 +225,7 @@ physics_material_override = ExtResource("13_gbrv7")
 shape = SubResource("ConcavePolygonShape3D_ogpjp")
 
 [node name="Cube6" type="MeshInstance3D" parent="ArenaGeometry" unique_id=278343484]
-transform = Transform3D(0.295931, 0, 0, 0, 1.01676, 0, 0, 0, 0.633337, 11.8998, 0.191363, -5.23253)
+transform = Transform3D(0.295931, 0, 0, 0, 1.01676, 0, 0, 0, 0.633337, 11.8998, -44.67979, -5.23253)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_v5r4t")
 
@@ -239,7 +239,7 @@ shape = SubResource("ConcavePolygonShape3D_ogpjp")
 shape = SubResource("ConcavePolygonShape3D_ogpjp")
 
 [node name="Cube8" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1100212510]
-transform = Transform3D(0.295931, 0, 0, 0, 1.01676, 0, 0, 0, 0.633337, 11.8998, -0.559413, -10.0766)
+transform = Transform3D(0.295931, 0, 0, 0, 1.01676, 0, 0, 0, 0.633337, 11.8998, -45.43057, -10.0766)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_v5r4t")
 
@@ -253,7 +253,7 @@ shape = SubResource("ConcavePolygonShape3D_ogpjp")
 shape = SubResource("ConcavePolygonShape3D_ogpjp")
 
 [node name="Cube2" type="MeshInstance3D" parent="ArenaGeometry" unique_id=195454445]
-transform = Transform3D(1.12259, 0, 0, 0, 1.2, 0, 0, 0, 0.65, 0, 1.88, -18.812)
+transform = Transform3D(1.12259, 0, 0, 0, 1.2, 0, 0, 0, 0.65, 0, -42.991154, -18.812)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_v5r4t")
 
@@ -264,7 +264,7 @@ physics_material_override = ExtResource("13_gbrv7")
 shape = SubResource("ConcavePolygonShape3D_ogpjp")
 
 [node name="Cube3" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1967624430]
-transform = Transform3D(1.12379, 0, 0, 0, 0.702028, 0, 0, 0, 0.650693, 0, 2.85382, -16.3191)
+transform = Transform3D(1.12379, 0, 0, 0, 0.702028, 0, 0, 0, 0.650693, 0, -42.017334, -16.3191)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_v5r4t")
 
@@ -275,7 +275,7 @@ physics_material_override = ExtResource("13_gbrv7")
 shape = SubResource("ConcavePolygonShape3D_ogpjp")
 
 [node name="Slope1" type="MeshInstance3D" parent="ArenaGeometry" unique_id=2097142563]
-transform = Transform3D(1.28, 0, 0, 0, 0.766044, -0.642788, 0, 0.642788, 0.766044, 0, 0.317887, -10.92)
+transform = Transform3D(1.28, 0, 0, 0, 0.766044, -0.642788, 0, 0.642788, 0.766044, 0, -44.55327, -10.92)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_r7gw0")
 
@@ -286,7 +286,7 @@ physics_material_override = ExtResource("13_gbrv7")
 shape = SubResource("ConcavePolygonShape3D_mpg03")
 
 [node name="Slope2" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1265892078]
-transform = Transform3D(1.28, 0, 0, 0, 0.766044, -0.642788, 0, 0.642788, 0.766044, 0, -4.21692, -5.50796)
+transform = Transform3D(1.28, 0, 0, 0, 0.766044, -0.642788, 0, 0.642788, 0.766044, 0, -49.088074, -5.50796)
 material_override = ExtResource("10_md8ma")
 mesh = SubResource("BoxMesh_r7gw0")
 
@@ -297,7 +297,7 @@ physics_material_override = ExtResource("13_gbrv7")
 shape = SubResource("ConcavePolygonShape3D_mpg03")
 
 [node name="Platform1" type="MeshInstance3D" parent="ArenaGeometry" unique_id=730138069]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, 5.75, -17.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, -39.121155, -17.5)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_w3r7n")
 
@@ -308,7 +308,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_1g5s4")
 
 [node name="Platform2" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1428397549]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 5.75, -17.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, -39.121155, -17.5)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_w3r7n")
 
@@ -319,7 +319,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_1g5s4")
 
 [node name="Platform3" type="MeshInstance3D" parent="ArenaGeometry" unique_id=652404978]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -17.5, 5.75, -1.75)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -17.5, -39.121155, -1.75)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_2bxsk")
 
@@ -330,7 +330,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_mlubs")
 
 [node name="Platform4" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1953854178]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 17.5, 5.75, -1.75)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 17.5, -39.121155, -1.75)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_2bxsk")
 
@@ -341,7 +341,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_mlubs")
 
 [node name="Bridge" type="MeshInstance3D" parent="ArenaGeometry" unique_id=779091227]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 13.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -41.371155, 13.5)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_knw4k")
 
@@ -352,7 +352,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_hwulb")
 
 [node name="BridgePlat1" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1814826364]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3.5, 17.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -41.371155, 17.5)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -363,7 +363,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat3" type="MeshInstance3D" parent="ArenaGeometry" unique_id=723152781]
-transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, 18.9025, 5.55493, 18.8874)
+transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, 18.9025, -39.316223, 18.8874)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -374,7 +374,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat4" type="MeshInstance3D" parent="ArenaGeometry" unique_id=439013265]
-transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, -18.8939, 5.55493, 18.8893)
+transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, -18.8939, -39.316223, 18.8893)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -385,7 +385,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat5" type="MeshInstance3D" parent="ArenaGeometry" unique_id=646197455]
-transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, -18.8939, 5.55493, -18.8897)
+transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, -18.8939, -39.316223, -18.8897)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -396,7 +396,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat6" type="MeshInstance3D" parent="ArenaGeometry" unique_id=59172002]
-transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, 18.8887, 5.55493, -18.8897)
+transform = Transform3D(0.3, 0, 0, 0, 30, 0, 0, 0, 0.3, 18.8887, -39.316223, -18.8897)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -407,7 +407,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat7" type="MeshInstance3D" parent="ArenaGeometry" unique_id=311792919]
-transform = Transform3D(0.3, 0, 0, 0, -3.49691e-06, -0.3, 0, 80, -1.31134e-08, 18.8938, 12.3411, 0.0363693)
+transform = Transform3D(0.3, 0, 0, 0, -3.49691e-06, -0.3, 0, 80, -1.31134e-08, 18.8938, -32.530056, 0.0363693)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -418,7 +418,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat8" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1888153732]
-transform = Transform3D(0.3, 0, 0, 0, -3.49691e-06, -0.3, 0, 80, -1.31134e-08, -18.8988, 12.3411, 0.0363693)
+transform = Transform3D(0.3, 0, 0, 0, -3.49691e-06, -0.3, 0, 80, -1.31134e-08, -18.8988, -32.530056, 0.0363693)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -429,7 +429,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat9" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1653778686]
-transform = Transform3D(-1.31134e-08, 80, -1.31134e-08, 0, -3.49691e-06, -0.3, -0.3, -3.49691e-06, 5.73206e-16, -0.0608397, 12.3411, 18.8918)
+transform = Transform3D(-1.31134e-08, 80, -1.31134e-08, 0, -3.49691e-06, -0.3, -0.3, -3.49691e-06, 5.73206e-16, -0.0608397, -32.530056, 18.8918)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -440,7 +440,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat10" type="MeshInstance3D" parent="ArenaGeometry" unique_id=487144215]
-transform = Transform3D(-1.31134e-08, 80, -1.31134e-08, 0, -3.49691e-06, -0.3, -0.3, -3.49691e-06, 5.73206e-16, -0.0608397, 12.3411, -18.9317)
+transform = Transform3D(-1.31134e-08, 80, -1.31134e-08, 0, -3.49691e-06, -0.3, -0.3, -3.49691e-06, 5.73206e-16, -0.0608397, -32.530056, -18.9317)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -451,7 +451,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat2" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1001805221]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 3.5, 17.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -41.371155, 17.5)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -462,7 +462,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgePlat11" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1952674798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054476, 4.03285, -17.5191)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054476, -40.838306, -17.5191)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_byjs8")
 
@@ -473,7 +473,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_7p2ps")
 
 [node name="BridgeSlope1" type="MeshInstance3D" parent="ArenaGeometry" unique_id=623949751]
-transform = Transform3D(-0.866026, -0.5, 8.74228e-08, -0.5, 0.866025, -1.77636e-15, -7.57104e-08, -4.37114e-08, -1, 12.87, 1.66, 17.5)
+transform = Transform3D(-0.866026, -0.5, 8.74228e-08, -0.5, 0.866025, -1.77636e-15, -7.57104e-08, -4.37114e-08, -1, 12.87, -43.211155, 17.5)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_g3yr5")
 
@@ -484,7 +484,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_r8elt")
 
 [node name="BridgeSlope2" type="MeshInstance3D" parent="ArenaGeometry" unique_id=915264870]
-transform = Transform3D(0.866026, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -12.87, 1.66, 17.5)
+transform = Transform3D(0.866026, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -12.87, -43.211155, 17.5)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_g3yr5")
 
@@ -495,7 +495,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_r8elt")
 
 [node name="TooSteep1" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1188828221]
-transform = Transform3D(-0.5, -0.866025, 8.74228e-08, -0.866025, 0.5, 0, -4.37114e-08, -7.57103e-08, -1, 16.5, 5.5, 8)
+transform = Transform3D(-0.5, -0.866025, 8.74228e-08, -0.866025, 0.5, 0, -4.37114e-08, -7.57103e-08, -1, 16.5, -39.371155, 8)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_e2wm4")
 
@@ -506,7 +506,7 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_qhf25")
 
 [node name="TooSteep2" type="MeshInstance3D" parent="ArenaGeometry" unique_id=1583076395]
-transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -16.5, 5.5, 8)
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -16.5, -39.371155, 8)
 material_override = ExtResource("14_j7jrj")
 mesh = SubResource("BoxMesh_e2wm4")
 
@@ -517,6 +517,6 @@ physics_material_override = ExtResource("15_wxpum")
 shape = SubResource("ConcavePolygonShape3D_qhf25")
 
 [node name="Area3D" parent="." unique_id=1903803035 instance=ExtResource("6_1nuv2")]
-transform = Transform3D(-0.49091148, 0, -0.028819425, 0, 1, 0, 0.025512852, 0, -0.55453557, -0.30807197, -2.701796, 5.9637203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30807197, 6.483181, 5.9637203)
 
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]

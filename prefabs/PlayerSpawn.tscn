@@ -8,6 +8,7 @@
 script = ExtResource("1_jef56")
 
 [node name="blockbench_export" parent="." unique_id=609940373 instance=ExtResource("2_xhgq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6987872, 0)
 
 [node name="armature" parent="blockbench_export/root/armature/Skeleton3D" parent_id_path=PackedInt32Array(609940373, 1361740011) index="0" unique_id=1323325056]
 surface_material_override/0 = ExtResource("3_err2u")

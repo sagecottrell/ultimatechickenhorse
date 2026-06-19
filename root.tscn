@@ -64,11 +64,18 @@ offset_bottom = 648.0
 texture = ExtResource("6_l8v81")
 
 [node name="PanelContainer" type="PanelContainer" parent="LevelSwitch/PanelContainer" unique_id=70211816]
-layout_mode = 0
-offset_left = 823.0
-offset_top = 476.0
-offset_right = 1122.0
-offset_bottom = 622.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -299.0
+offset_top = -146.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-50, -50)
 
 [node name="Label" type="Label" parent="LevelSwitch/PanelContainer/PanelContainer" unique_id=863171781]
 layout_mode = 2

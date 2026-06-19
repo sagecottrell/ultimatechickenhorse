@@ -120,8 +120,6 @@ material_override = ExtResource("3_7vb8p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.62268e-06, 6, 13)
 coyote_time_ms = 250
 
-[node name="Camera3D" type="Camera3D" parent="Player/Head/FirstPersonCameraReference" index="0" unique_id=1676601152]
-
 [node name="Area3D" parent="." unique_id=316315857 instance=ExtResource("3_ebamq")]
 transform = Transform3D(0.491574, 0, 0, 0, 1, 0, 0, 0, 0.555284, 0, -3, 5.93584)
 
