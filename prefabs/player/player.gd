@@ -28,6 +28,8 @@ extends FPSController3D
 
 @export var spawn_point: Node3D
 
+var movement_locked : bool = false
+
 func _reset():
 	head.actual_rotation = Vector3.ZERO
 	global_transform = spawn_point.global_transform
@@ -48,6 +50,7 @@ func _ready():
 	$Ranking.text = ""
 	
 	SignalBus.on_any_win.connect(set_rank)
+	SignalBus.on_local_win.connect(on_win)
 	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
@@ -58,7 +61,7 @@ func set_rank(pid: int, rank: String):
 	$Ranking.text = rank
 
 func _physics_process(delta):
-	if not is_multiplayer_authority():
+	if not is_multiplayer_authority() or movement_locked:
 		return
 		
 	var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
@@ -84,7 +87,7 @@ func _physics_process(delta):
 
 
 func _input(event: InputEvent) -> void:
-	if not is_multiplayer_authority():
+	if not is_multiplayer_authority() or movement_locked:
 		return
 		
 	# Mouse look (only if the mouse is captured).
@@ -100,8 +103,12 @@ func walk(blendtime: float = 0.3):
 	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 1.0, blendtime)
 	
 func on_win():
-	$Head/FirstPersonCamera.priority_override = true
-	var anim: AnimationPlayer = get_node(anim_tree.anim_player)
+	if name.to_int() != multiplayer.get_unique_id():
+		return
+	$Head/ThirdPersonCamera.priority = 200
+	movement_locked = true
+	var anim: AnimationPlayer = anim_tree.get_node(anim_tree.anim_player)
 	anim.play("win")
 	await anim.animation_finished
-	$Head/FirstPersonCamera.priority_override = false
+	movement_locked = false
+	$Head/ThirdPersonCamera.priority = 0

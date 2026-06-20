@@ -3,12 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://8oy3xm2sff8" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_dgc4i"]
 [ext_resource type="Script" uid="uid://bm7pjd2tyd4wt" path="res://prefabs/player/player.gd" id="2_1kmib"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_mamfr"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_xgtsh"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_1nynx"]
 [ext_resource type="Script" uid="uid://c4mo7inp0b5q0" path="res://prefabs/player/playervisualroot.gd" id="5_xgtsh"]
 [ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="6_xgtsh"]
 
-[sub_resource type="Resource" id="Resource_mamfr"]
-script = ExtResource("4_xgtsh")
+[sub_resource type="Resource" id="Resource_64pgi"]
+script = ExtResource("4_1nynx")
+
+[sub_resource type="Resource" id="Resource_0ep8a"]
+script = ExtResource("4_1nynx")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
 properties/0/path = NodePath(".:position")
@@ -72,14 +75,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
 script = ExtResource("3_mamfr")
 priority = 1
 look_at_mode = 1
-tween_resource = SubResource("Resource_mamfr")
+tween_resource = SubResource("Resource_64pgi")
+tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="ThirdPersonCamera" type="Node3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="2" unique_id=475707984]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.97888094, 0.20443141, 0, -0.20443141, 0.97888094, 0, 1.2269084, 2.891844)
+transform = Transform3D(1, 0, 0, 0, 0.8926156, 0.4508186, 0, -0.4508186, 0.8926156, 0, 1.87333, 4.654275)
 script = ExtResource("3_mamfr")
-tween_resource = SubResource("Resource_mamfr")
+tween_resource = SubResource("Resource_0ep8a")
+tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="3" unique_id=2137948890]
@@ -119,10 +124,13 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 [node name="blockbench_export" parent="PlayerVisualRoot" index="0" unique_id=2079496628 instance=ExtResource("6_xgtsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 2126829516) index="2" unique_id=636287267]
-transform = Transform3D(1, 0, 0, 0, 0.9903219, 0.13878822, 0, -0.13878822, 0.9903219, 0.3125, 0.625, 0)
+[node name="root" parent="PlayerVisualRoot/blockbench_export" index="0" unique_id=309177971]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 2126829516) index="3" unique_id=630228666]
-transform = Transform3D(1, 0, 0, 0, 0.9903219, -0.13878822, 0, 0.13878822, 0.9903219, -0.3125, 0.625, 0)
+[node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="2" unique_id=1418564043]
+transform = Transform3D(-0.9396926, -0.34202012, 0, 0.3420202, -0.9396924, 0, 0, 0, 0.99999976, 0.3125, 0.625, 0)
+
+[node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="3" unique_id=889369645]
+transform = Transform3D(-4.371139e-08, 0.99999976, 0, -1, -4.3711378e-08, 0, 0, 0, 0.99999976, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]
