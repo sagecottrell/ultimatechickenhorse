@@ -32,7 +32,7 @@ var movement_locked : bool = false
 var is_self: bool
 
 func _reset():
-	head.actual_rotation = Vector3.ZERO
+	head.actual_rotation.x = 0
 	global_transform = spawn_point.global_transform
 	velocity = Vector3.ZERO
 
@@ -120,12 +120,13 @@ func on_win():
 	if is_self:
 		$CameraOnWin.priority = 200
 		$PlayerVisualRoot.show_meshes()
-	movement_locked = true
-	$Head.rotation = Vector3.ZERO
+		movement_locked = true
+		$Head.actual_rotation.x = 0
+		$Head.rotation = Vector3.ZERO
 	var anim: AnimationPlayer = anim_tree.get_node(anim_tree.anim_player)
 	anim.play("win")
 	await anim.animation_finished
-	movement_locked = false
-	$CameraOnWin.priority = 0
 	if is_self:
+		movement_locked = false
+		$CameraOnWin.priority = 0
 		$PlayerVisualRoot.hide_meshes()

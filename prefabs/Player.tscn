@@ -9,12 +9,16 @@
 
 [sub_resource type="Resource" id="Resource_1nynx"]
 script = ExtResource("4_1nynx")
+duration = 0.0
 
-[sub_resource type="Resource" id="Resource_64pgi"]
+[sub_resource type="Resource" id="Resource_70wo7"]
 script = ExtResource("4_1nynx")
+duration = 0.0
+metadata/_custom_type_script = "uid://8umksf8e80fw"
 
 [sub_resource type="Resource" id="Resource_0ep8a"]
 script = ExtResource("4_1nynx")
+duration = 0.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
 properties/0/path = NodePath(".:position")
@@ -85,7 +89,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
 script = ExtResource("3_mamfr")
 priority = 1
 look_at_mode = 1
-tween_resource = SubResource("Resource_64pgi")
+tween_resource = SubResource("Resource_70wo7")
 tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
@@ -134,13 +138,10 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 [node name="blockbench_export" parent="PlayerVisualRoot" index="0" unique_id=2079496628 instance=ExtResource("6_xgtsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Head2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="0" unique_id=892588430]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.75, 0)
-
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="2" unique_id=1418564043]
-transform = Transform3D(1, 0, 0, 0, 0.98916036, 0.14683749, 0, -0.14683749, 0.98916036, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99860054, 0.052881684, 0, -0.052881684, 0.99860054, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="3" unique_id=889369645]
-transform = Transform3D(1, 0, 0, 0, 0.98916036, -0.14683749, 0, 0.14683749, 0.98916036, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99860054, -0.052881684, 0, 0.052881684, 0.99860054, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]
