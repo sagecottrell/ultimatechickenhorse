@@ -11,3 +11,6 @@ func set_place(n):
 
 func hide_place():
 	%place.visible = false
+
+func _on_switch_cam_button_pressed() -> void:
+	SignalBus.cam_switch(name.to_int(), false)

@@ -1,13 +1,18 @@
 class_name BaseScene
 extends Node3D
 
+var cameras: Array[PhantomCamera3D] = []
+var server_camera_index = -1
+
 func _enter_tree():
 	$MultiplayerSpawner.spawn_function = spawn_player
 
 func _ready():
 	if multiplayer.get_unique_id() == 1:
 		spawn_players()
-	
+		cameras.assign(find_children("PhantomCamera3D*", "", false, true))
+		print(cameras)
+		SignalBus.on_cam_switch.connect(_on_cam_switch)
 
 func spawn_player(info: Dictionary):
 	var spawn: Node3D = get_node(info.at)
@@ -45,3 +50,16 @@ func _on_star_collide(player: Player) -> void:
 	$Star.queue_free()
 	SignalBus.local_win()
 	
+func _on_cam_switch(pid: int, increase: bool):
+	prints("oncamswitch", pid, increase)
+	if pid != 1:
+		cameras[server_camera_index].priority = 0
+		server_camera_index = -1
+		return
+	if server_camera_index == -1:
+		server_camera_index = 0
+	else:
+		cameras[server_camera_index].priority = 0
+		var dir = 1 if increase else -1
+		server_camera_index = (server_camera_index + dir) % cameras.size()
+	cameras[server_camera_index].priority = 200

@@ -8,6 +8,7 @@ static var rankings: Array[int] = []
 
 func _ready() -> void:
 	$ServerGUI.visible = false
+	%CameraController.visible = false
 	multiplayer.server_relay = true
 	SignalBus.on_client_setup.connect(_on_client_setup)
 	SignalBus.on_self_is_client.connect(_on_self_is_client)
@@ -53,7 +54,7 @@ func pack_and_send(fp: String):
 	await get_tree().create_timer(0.5).timeout
 	
 	push_scene_to_all.rpc(file.get_as_text())
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	%CameraController.visible = true
 
 
 func _on_client_won(pid: int):
@@ -99,3 +100,11 @@ func send_player_info(json: String):
 
 func _on_file_list_on_press_send(fp: String) -> void:
 	pack_and_send(fp)
+
+
+func _on_prev_camera_button_pressed() -> void:
+	SignalBus.cam_switch(1, false)
+
+
+func _on_next_camera_button_pressed() -> void:
+	SignalBus.cam_switch(1, true)

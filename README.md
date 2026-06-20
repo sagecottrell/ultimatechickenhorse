@@ -12,3 +12,6 @@
 	- [ ] CSG cave using path3d
 	- [ ] moving platform
 - [ ] server switch cameras
+	- [ ] level cameras
+	- [ ] player first person camera
+	- [ ] player freecam

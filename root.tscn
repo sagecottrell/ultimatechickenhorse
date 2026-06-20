@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ahqcj8kboeq" path="res://prefabs/player/player.png" id="6_vyht1"]
 [ext_resource type="Script" uid="uid://dom5pfgtcwuwg" path="res://client/client.gd" id="8_bf3um"]
 [ext_resource type="Script" uid="uid://boe7jhe4h7lc" path="res://server/server.gd" id="9_huihk"]
+[ext_resource type="Texture2D" uid="uid://k2t5doe0gv7e" path="res://icons/Camera3D.svg" id="9_tw3kd"]
 
 [node name="root" type="Node3D" unique_id=790539646]
 script = ExtResource("1_pq8q7")
@@ -98,10 +99,10 @@ render_target_update_mode = 0
 
 [node name="Label" type="Label" parent="client/ClientGUI/Control" unique_id=2042897658]
 layout_mode = 0
-offset_left = 974.0
-offset_top = 581.0
-offset_right = 1107.0
-offset_bottom = 604.0
+offset_left = 518.0
+offset_top = 541.0
+offset_right = 651.0
+offset_bottom = 564.0
 text = "waiting on host..."
 
 [node name="server" type="Node" parent="." unique_id=974502911]
@@ -115,32 +116,59 @@ metadata/_custom_type_script = "uid://btdvny6i4c55h"
 
 [node name="ServerGUI" type="CanvasLayer" parent="server" unique_id=140744919]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI" unique_id=788133445]
+[node name="VBoxContainer" type="VBoxContainer" parent="server/ServerGUI" unique_id=1115444209]
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 51.0
+size_flags_horizontal = 3
 
-[node name="PlayerList" type="VBoxContainer" parent="server/ServerGUI/HBoxContainer" unique_id=345696609]
+[node name="CameraController" type="PanelContainer" parent="server/ServerGUI/VBoxContainer" unique_id=1059785071]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer/CameraController" unique_id=225605090]
+layout_mode = 2
+
+[node name="PrevCameraButton" type="Button" parent="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2" unique_id=1480083269]
+layout_mode = 2
+text = "Prev"
+icon = ExtResource("9_tw3kd")
+
+[node name="Control" type="Control" parent="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2" unique_id=546201618]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextCameraButton" type="Button" parent="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2" unique_id=811781853]
+layout_mode = 2
+text = "Next"
+icon = ExtResource("9_tw3kd")
+icon_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer" unique_id=788133445]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerList" type="VBoxContainer" parent="server/ServerGUI/VBoxContainer/HBoxContainer" unique_id=345696609]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FileList" type="VBoxContainer" parent="server/ServerGUI/HBoxContainer" unique_id=1726090331]
+[node name="FileList" type="VBoxContainer" parent="server/ServerGUI/VBoxContainer/HBoxContainer" unique_id=1726090331]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_jnlp7")
 
-[node name="PanelContainer" type="PanelContainer" parent="server/ServerGUI/HBoxContainer/FileList" unique_id=787277774]
+[node name="PanelContainer" type="PanelContainer" parent="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" unique_id=787277774]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI/HBoxContainer/FileList/PanelContainer" unique_id=681972025]
+[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer/HBoxContainer/FileList/PanelContainer" unique_id=681972025]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="server/ServerGUI/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=499839629]
+[node name="Label" type="Label" parent="server/ServerGUI/VBoxContainer/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=499839629]
 layout_mode = 2
 text = "Watch:"
 
-[node name="WatchPath" type="LineEdit" parent="server/ServerGUI/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=1486506470]
+[node name="WatchPath" type="LineEdit" parent="server/ServerGUI/VBoxContainer/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=1486506470]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -148,10 +176,12 @@ placeholder_text = "C:/projects/godot"
 
 [connection signal="on_client" from="Multiplayer" to="client" method="_on_multiplayer_on_client"]
 [connection signal="on_host" from="Multiplayer" to="server" method="_on_multiplayer_on_host"]
-[connection signal="files_created" from="server/DirectoryWatcher" to="server/ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_created"]
-[connection signal="files_deleted" from="server/DirectoryWatcher" to="server/ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_deleted"]
-[connection signal="files_modified" from="server/DirectoryWatcher" to="server/ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_modified"]
-[connection signal="on_press_send" from="server/ServerGUI/HBoxContainer/FileList" to="server" method="_on_file_list_on_press_send"]
-[connection signal="text_submitted" from="server/ServerGUI/HBoxContainer/FileList/PanelContainer/HBoxContainer/WatchPath" to="." method="_on_watch_path_text_submitted"]
+[connection signal="files_created" from="server/DirectoryWatcher" to="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_created"]
+[connection signal="files_deleted" from="server/DirectoryWatcher" to="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_deleted"]
+[connection signal="files_modified" from="server/DirectoryWatcher" to="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_modified"]
+[connection signal="pressed" from="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2/PrevCameraButton" to="server" method="_on_prev_camera_button_pressed"]
+[connection signal="pressed" from="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2/NextCameraButton" to="server" method="_on_next_camera_button_pressed"]
+[connection signal="on_press_send" from="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" to="server" method="_on_file_list_on_press_send"]
+[connection signal="text_submitted" from="server/ServerGUI/VBoxContainer/HBoxContainer/FileList/PanelContainer/HBoxContainer/WatchPath" to="." method="_on_watch_path_text_submitted"]
 
 [editable path="Multiplayer"]

@@ -16,8 +16,6 @@ extends "player_controller.gd"
 
 func _ready() -> void:
 	super()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 	if get_node_or_null("%PlayerPhantomCameraNoiseEmitter3D"):
 		%EmitterTip.visible = true
 

@@ -27,6 +27,7 @@ glow_enabled = true
 
 [sub_resource type="Resource" id="Resource_ix6w0"]
 script = ExtResource("7_k8yl0")
+duration = 0.0
 
 [sub_resource type="GDScript" id="GDScript_pxpqt"]
 script/source = "extends MultiplayerSpawner
@@ -70,6 +71,20 @@ transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1004881554]
 transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 0, 106.148346, -17.732723)
+script = ExtResource("6_pxpqt")
+priority = 50
+tween_resource = SubResource("Resource_ix6w0")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PhantomCamera3D2" type="Node3D" parent="." unique_id=679253071]
+transform = Transform3D(0.9983798, 0, 0.056900233, -0.021087252, 0.9287924, 0.37, -0.052848507, -0.37060043, 0.92728764, 0, 106.148346, 94.622025)
+script = ExtResource("6_pxpqt")
+priority = 50
+tween_resource = SubResource("Resource_ix6w0")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PhantomCamera3D3" type="Node3D" parent="." unique_id=133932300]
+transform = Transform3D(-0.052848548, -0.37060046, 0.92728764, -0.021087252, 0.92879236, 0.37, -0.9983798, 4.3879634e-08, -0.056900263, 67.48776, 106.148346, 45.04531)
 script = ExtResource("6_pxpqt")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")

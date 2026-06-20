@@ -1,6 +1,19 @@
 class_name Player 
 extends FPSController3D
 
+@export var first_person: bool = true:
+	set(value):
+		first_person = value
+		if is_node_ready():
+			switch_to_fp_or_tp_cam()
+	get:
+		return first_person
+@onready var first_person_cam: PhantomCamera3D = %FirstPersonCamera
+@onready var third_person_cam: PhantomCamera3D = %ThirdPersonCamera
+@onready var free_cam: PhantomCamera3D = $FreeCam
+@onready var win_cam: PhantomCamera3D = $CameraOnWin
+@onready var vis_root: PlayerVisualRoot = $PlayerVisualRoot
+
 @export var input_back_action_name := "move_backward"
 @export var input_forward_action_name := "move_forward"
 @export var input_left_action_name := "move_left"
@@ -44,12 +57,12 @@ func _ready():
 	is_self = name.to_int() == multiplayer.get_unique_id()
 	
 	if is_multiplayer_authority():
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		$Head/FirstPersonCamera.priority = 100
 		SignalBus.on_local_win.connect(on_win.rpc)
-		$PlayerVisualRoot.hide_meshes()
+		switch_to_fp_or_tp_cam()
+	else:
+		SignalBus.on_cam_switch.connect(on_cam_switch)
 	
-	$PlayerVisualRoot.player_color = player_color
+	vis_root.player_color = player_color
 	$Nametag.text = player_name
 	$Ranking.text = ""
 	
@@ -115,18 +128,59 @@ func walk(blendtime: float = 0.3):
 	var tween = get_tree().create_tween()
 	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 1.0, blendtime)
 
+
+func disable_cams():
+	free_cam.priority = 0
+	first_person_cam.priority = 0
+	third_person_cam.priority = 0
+	win_cam.priority = 0
+
+func switch_to_fp_or_tp_cam():
+	if first_person:
+		switch_to_first_person()
+	else:
+		switch_to_third_person()
+
+func switch_to_first_person():
+	vis_root.hide_meshes()
+	disable_cams()
+	first_person_cam.priority = 200
+	
+func switch_to_third_person():
+	vis_root.show_meshes()
+	disable_cams()
+	third_person_cam.priority = 200
+
+func switch_to_free_cam():
+	vis_root.show_meshes()
+	disable_cams()
+	free_cam.priority = 200
+
+func switch_to_win_cam():
+	vis_root.show_meshes()
+	disable_cams()
+	win_cam.priority = 200
+
+
 @rpc("call_local")
 func on_win():
 	if is_self:
-		$CameraOnWin.priority = 200
-		$PlayerVisualRoot.show_meshes()
+		switch_to_win_cam()
 		movement_locked = true
-		$Head.actual_rotation.x = 0
-		$Head.rotation = Vector3.ZERO
+		head.actual_rotation.x = 0
+		head.rotation = Vector3.ZERO
 	var anim: AnimationPlayer = anim_tree.get_node(anim_tree.anim_player)
 	anim.play("win")
 	await anim.animation_finished
 	if is_self:
 		movement_locked = false
-		$CameraOnWin.priority = 0
-		$PlayerVisualRoot.hide_meshes()
+		switch_to_fp_or_tp_cam()
+
+func on_cam_switch(pid: int, fp: bool):
+	if pid != name.to_int():
+		disable_cams()
+		return
+	if fp:
+		switch_to_first_person()
+	else:
+		switch_to_free_cam()

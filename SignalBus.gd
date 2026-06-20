@@ -28,6 +28,12 @@ signal on_unstuck()
 ## when the local player should die
 signal on_die()
 
+## when the server wants to switch to a camera
+## pid 1 to switch level cameras, otherwise to get player cameras
+## for players, increase=true to get fp, false to get freecam
+## for level cameras, increase to move to next, otherwise prev
+signal on_cam_switch(pid: int, increase: bool)
+
 func recieve_scene(node: BaseScene):
 	on_recieve_scene.emit(node)
 func change_scene(node: BaseScene):
@@ -58,3 +64,6 @@ func unstuck():
 
 func die():
 	on_die.emit()
+
+func cam_switch(pid: int, increase: bool):
+	on_cam_switch.emit(pid, increase)

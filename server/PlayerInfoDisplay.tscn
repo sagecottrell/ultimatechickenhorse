@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bjdbhmq2r0ui"]
 
 [ext_resource type="Script" uid="uid://biaw6iw0vpn8s" path="res://server/player_info_display.gd" id="1_ykauy"]
+[ext_resource type="Texture2D" uid="uid://k2t5doe0gv7e" path="res://icons/Camera3D.svg" id="2_0u1hf"]
 
 [node name="PlayerInfoDisplay" type="PanelContainer" unique_id=764595799]
 anchors_preset = 15
@@ -29,3 +30,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 fit_content = true
+
+[node name="SwitchCamButton" type="Button" parent="HBoxContainer" unique_id=1561375779]
+layout_mode = 2
+icon = ExtResource("2_0u1hf")
+
+[connection signal="pressed" from="HBoxContainer/SwitchCamButton" to="." method="_on_switch_cam_button_pressed"]

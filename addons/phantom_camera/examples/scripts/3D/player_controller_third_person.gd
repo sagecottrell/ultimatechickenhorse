@@ -21,9 +21,6 @@ func _ready() -> void:
 	_aim_pcam = owner.get_node("%PlayerAimPhantomCamera3D")
 	_ceiling_pcam = owner.get_node("%CeilingPhantomCamera3D")
 
-	if _player_pcam.get_follow_mode() == _player_pcam.FollowMode.THIRD_PERSON:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 
 func _physics_process(delta: float) -> void:
 	super(delta)
