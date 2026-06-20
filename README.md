@@ -11,3 +11,4 @@
 	[X] gravity area
 	[ ] CSG cave using path3d
 	[ ] moving platform
+[ ] server switch cameras

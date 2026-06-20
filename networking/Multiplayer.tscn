@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bqrgsspuugbqk"]
 
 [ext_resource type="Script" uid="uid://bih64wpv0rrgq" path="res://networking/multiplayer.gd" id="1_xbtfq"]
-[ext_resource type="Theme" uid="uid://cor1vkpwxjcx6" path="res://theme.tres" id="2_r0mlp"]
 
 [node name="Multiplayer" type="Node" unique_id=307702401]
 script = ExtResource("1_xbtfq")
@@ -14,7 +13,6 @@ offset_right = 685.0
 offset_bottom = 423.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("2_r0mlp")
 
 [node name="Net" type="VBoxContainer" parent="UI" unique_id=525925329]
 layout_mode = 2

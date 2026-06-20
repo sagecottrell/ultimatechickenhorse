@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq03vbx8vxd77"
 path.bptc="res://.godot/imported/spawn_0.png-05bd854dbd2c8f6b4e070605f2cc9c2f.bptc.ctex"
+path.astc="res://.godot/imported/spawn_0.png-05bd854dbd2c8f6b4e070605f2cc9c2f.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://prefabs/player_spawn/spawn_0.png"
-dest_files=["res://.godot/imported/spawn_0.png-05bd854dbd2c8f6b4e070605f2cc9c2f.bptc.ctex"]
+dest_files=["res://.godot/imported/spawn_0.png-05bd854dbd2c8f6b4e070605f2cc9c2f.bptc.ctex", "res://.godot/imported/spawn_0.png-05bd854dbd2c8f6b4e070605f2cc9c2f.astc.ctex"]
 
 [params]
 

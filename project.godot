@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 SignalBus="*uid://bc374a4uygkrd"
+SettingsManager="*uid://buv1h3breykyb"
 
 [display]
 
@@ -39,6 +40,10 @@ folder_colors={
 "res://icons/": "gray",
 "res://watch_folder/": "pink"
 }
+
+[gui]
+
+theme/custom="uid://cor1vkpwxjcx6"
 
 [input]
 
@@ -90,3 +95,4 @@ move_fly_mode={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true

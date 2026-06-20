@@ -5,7 +5,7 @@ extends Node
 const PORT = 9999
 
 signal on_host()
-signal on_client()
+signal on_client(info: PlayerInfo)
 
 func _ready():
 	# Start paused
@@ -64,7 +64,7 @@ func client_start_game():
 	# Hide the UI and unpause to start the game.
 	$UI.hide()
 	get_tree().paused = false
-	on_client.emit()
+	on_client.emit(get_playerinfo())
 
 func get_playerinfo() -> PlayerInfo:
 	var color: Color = %PlayerColor.color

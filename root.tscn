@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://coe0x2enkov31" path="res://server/file_list.gd" id="4_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://do4twu8peuk88" path="res://client/spinnycube.tscn" id="5_vyht1"]
 [ext_resource type="Texture2D" uid="uid://c6ahqcj8kboeq" path="res://prefabs/player/player.png" id="6_vyht1"]
+[ext_resource type="Script" uid="uid://dom5pfgtcwuwg" path="res://client/client.gd" id="8_bf3um"]
+[ext_resource type="Script" uid="uid://boe7jhe4h7lc" path="res://server/server.gd" id="9_huihk"]
 
 [node name="root" type="Node3D" unique_id=790539646]
 script = ExtResource("1_pq8q7")
@@ -24,69 +26,35 @@ process_physics_priority = 300
 script = ExtResource("3_vvh5c")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="ServerGUI" type="CanvasLayer" parent="." unique_id=140744919]
+[node name="Menu" type="CanvasLayer" parent="." unique_id=1809034703]
+layer = 100
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ServerGUI" unique_id=788133445]
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Debug" type="CanvasLayer" parent="." unique_id=1804971164]
+layer = 200
 
-[node name="PlayerList" type="VBoxContainer" parent="ServerGUI/HBoxContainer" unique_id=345696609]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="World" type="Node3D" parent="." unique_id=2112108601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17668295, 0, 0)
 
-[node name="FileList" type="VBoxContainer" parent="ServerGUI/HBoxContainer" unique_id=1726090331]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("4_jnlp7")
+[node name="client" type="Node" parent="." unique_id=271196623]
+script = ExtResource("8_bf3um")
 
-[node name="ClientGUI" type="CanvasLayer" parent="." unique_id=586921557]
-
-[node name="Control" type="Control" parent="ClientGUI" unique_id=701864361]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="ClientGUI/Control" unique_id=388235931]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="ClientGUI/Control/SubViewportContainer" unique_id=1082476330]
-own_world_3d = true
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="Spinnycube" parent="ClientGUI/Control/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("5_vyht1")]
-
-[node name="Label" type="Label" parent="ClientGUI/Control" unique_id=2042897658]
-layout_mode = 0
-offset_left = 974.0
-offset_top = 581.0
-offset_right = 1107.0
-offset_bottom = 604.0
-text = "waiting on host..."
-
-[node name="LevelSwitch" type="CanvasLayer" parent="." unique_id=332940098]
+[node name="LevelSwitch" type="CanvasLayer" parent="client" unique_id=332940098]
 layer = 20
+visible = false
 
-[node name="PanelContainer" type="Control" parent="LevelSwitch" unique_id=1365118419]
+[node name="PanelContainer" type="Control" parent="client/LevelSwitch" unique_id=1365118419]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="TextureRect" type="TextureRect" parent="LevelSwitch/PanelContainer" unique_id=1802193344]
+[node name="TextureRect" type="TextureRect" parent="client/LevelSwitch/PanelContainer" unique_id=1802193344]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("6_vyht1")
 
-[node name="PanelContainer" type="PanelContainer" parent="LevelSwitch/PanelContainer" unique_id=70211816]
+[node name="PanelContainer" type="PanelContainer" parent="client/LevelSwitch/PanelContainer" unique_id=70211816]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -100,31 +68,90 @@ grow_vertical = 0
 offset_transform_enabled = true
 offset_transform_position = Vector2(-50, -50)
 
-[node name="Label" type="Label" parent="LevelSwitch/PanelContainer/PanelContainer" unique_id=863171781]
+[node name="Label" type="Label" parent="client/LevelSwitch/PanelContainer/PanelContainer" unique_id=863171781]
 layout_mode = 2
 text = "Server is changing level..."
 horizontal_alignment = 1
 
-[node name="Menu" type="CanvasLayer" parent="." unique_id=1809034703]
-layer = 100
+[node name="ClientGUI" type="CanvasLayer" parent="client" unique_id=586921557]
+visible = false
 
-[node name="Debug" type="CanvasLayer" parent="." unique_id=1804971164]
-layer = 200
+[node name="Control" type="Control" parent="client/ClientGUI" unique_id=701864361]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="World" type="Node3D" parent="." unique_id=2112108601]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17668295, 0, 0)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="client/ClientGUI/Control" unique_id=388235931]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
 
-[node name="DirectoryWatcher" type="Node" parent="." unique_id=549229135]
+[node name="SubViewport" type="SubViewport" parent="client/ClientGUI/Control/SubViewportContainer" unique_id=1082476330]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 0
+
+[node name="Spinnycube" parent="client/ClientGUI/Control/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("5_vyht1")]
+
+[node name="Label" type="Label" parent="client/ClientGUI/Control" unique_id=2042897658]
+layout_mode = 0
+offset_left = 974.0
+offset_top = 581.0
+offset_right = 1107.0
+offset_bottom = 604.0
+text = "waiting on host..."
+
+[node name="server" type="Node" parent="." unique_id=974502911]
+script = ExtResource("9_huihk")
+
+[node name="DirectoryWatcher" type="Node" parent="server" unique_id=549229135]
 script = ExtResource("4_28aoi")
 file_pattern = ".tscn"
 directory_list = PackedStringArray("res://watch_folder")
 metadata/_custom_type_script = "uid://btdvny6i4c55h"
 
-[connection signal="on_client" from="Multiplayer" to="." method="_on_multiplayer_on_client"]
-[connection signal="on_host" from="Multiplayer" to="." method="_on_multiplayer_on_host"]
-[connection signal="on_press_send" from="ServerGUI/HBoxContainer/FileList" to="." method="pack_and_send"]
-[connection signal="files_created" from="DirectoryWatcher" to="ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_created"]
-[connection signal="files_deleted" from="DirectoryWatcher" to="ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_deleted"]
-[connection signal="files_modified" from="DirectoryWatcher" to="ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_modified"]
+[node name="ServerGUI" type="CanvasLayer" parent="server" unique_id=140744919]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI" unique_id=788133445]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PlayerList" type="VBoxContainer" parent="server/ServerGUI/HBoxContainer" unique_id=345696609]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileList" type="VBoxContainer" parent="server/ServerGUI/HBoxContainer" unique_id=1726090331]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_jnlp7")
+
+[node name="PanelContainer" type="PanelContainer" parent="server/ServerGUI/HBoxContainer/FileList" unique_id=787277774]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI/HBoxContainer/FileList/PanelContainer" unique_id=681972025]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="server/ServerGUI/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=499839629]
+layout_mode = 2
+text = "Watch:"
+
+[node name="WatchPath" type="LineEdit" parent="server/ServerGUI/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=1486506470]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "C:/projects/godot"
+
+[connection signal="on_client" from="Multiplayer" to="client" method="_on_multiplayer_on_client"]
+[connection signal="on_host" from="Multiplayer" to="server" method="_on_multiplayer_on_host"]
+[connection signal="files_created" from="server/DirectoryWatcher" to="server/ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_created"]
+[connection signal="files_deleted" from="server/DirectoryWatcher" to="server/ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_deleted"]
+[connection signal="files_modified" from="server/DirectoryWatcher" to="server/ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_modified"]
+[connection signal="on_press_send" from="server/ServerGUI/HBoxContainer/FileList" to="server" method="_on_file_list_on_press_send"]
+[connection signal="text_submitted" from="server/ServerGUI/HBoxContainer/FileList/PanelContainer/HBoxContainer/WatchPath" to="." method="_on_watch_path_text_submitted"]
 
 [editable path="Multiplayer"]

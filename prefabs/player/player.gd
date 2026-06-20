@@ -29,6 +29,7 @@ extends FPSController3D
 @export var spawn_point: Node3D
 
 var movement_locked : bool = false
+var is_self: bool
 
 func _reset():
 	head.actual_rotation = Vector3.ZERO
@@ -40,17 +41,18 @@ func _enter_tree():
 
 func _ready():
 	setup()
+	is_self = name.to_int() == multiplayer.get_unique_id()
 	
 	if is_multiplayer_authority():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		$Head/FirstPersonCamera.priority = 100
+		SignalBus.on_local_win.connect(on_win.rpc)
 	
 	$PlayerVisualRoot.player_color = player_color
 	$Nametag.text = player_name
 	$Ranking.text = ""
 	
 	SignalBus.on_any_win.connect(set_rank)
-	SignalBus.on_local_win.connect(on_win)
 	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
@@ -90,6 +92,16 @@ func _input(event: InputEvent) -> void:
 	if not is_multiplayer_authority() or movement_locked:
 		return
 		
+	# 1. Capture on click
+	if event is InputEventMouseButton and event.pressed:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			get_viewport().set_input_as_handled()
+
+	# 2. Release on pressing Escape (ui_cancel)
+	if event.is_action_pressed("ui_cancel"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	# Mouse look (only if the mouse is captured).
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.screen_relative)
@@ -101,14 +113,15 @@ func idle(blendtime: float = 0.3):
 func walk(blendtime: float = 0.3):
 	var tween = get_tree().create_tween()
 	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 1.0, blendtime)
-	
+
+@rpc("call_local")
 func on_win():
-	if name.to_int() != multiplayer.get_unique_id():
-		return
-	$Head/ThirdPersonCamera.priority = 200
+	if is_self:
+		$CameraOnWin.priority = 200
 	movement_locked = true
+	$Head.rotation = Vector3.ZERO
 	var anim: AnimationPlayer = anim_tree.get_node(anim_tree.anim_player)
 	anim.play("win")
 	await anim.animation_finished
 	movement_locked = false
-	$Head/ThirdPersonCamera.priority = 0
+	$CameraOnWin.priority = 0

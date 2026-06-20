@@ -26,10 +26,10 @@ func spawn_players():
 	for child in get_children():
 		if child is PlayerSpawn:
 			spawns.append(child)
-	for pair in Zip.zip(spawns, Root.PlayerList, false):
+	for pair in Zip.zip(spawns, Server.PlayerList, false):
 		var spawn: Node = pair[0]
 		var player_id: int = pair[1]
-		var player_info = Root.PlayerIds[player_id]
+		var player_info = Server.PlayerIds[player_id]
 		var info = {"at": spawn.get_path(), "pid": player_id, "color": player_info.color, "name": player_info.name}
 		$MultiplayerSpawner.spawn(info)
 

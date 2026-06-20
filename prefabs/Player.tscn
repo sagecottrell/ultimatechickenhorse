@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://c4mo7inp0b5q0" path="res://prefabs/player/playervisualroot.gd" id="5_xgtsh"]
 [ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="6_xgtsh"]
 
+[sub_resource type="Resource" id="Resource_1nynx"]
+script = ExtResource("4_1nynx")
+
 [sub_resource type="Resource" id="Resource_64pgi"]
 script = ExtResource("4_1nynx")
 
@@ -37,6 +40,7 @@ animation = &"idle"
 filters = ["Left Leg2", "Right Leg2", "Waist/Left Arm2", "Waist/Right Arm2"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xgtsh"]
+resource_local_to_scene = true
 nodes/output/position = Vector2(600, 80)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_35c0j")
 nodes/Animation/position = Vector2(140, 100)
@@ -62,7 +66,13 @@ idling_ground = false
 player_color = Color(0, 0, 0, 1)
 player_name = ""
 
-[node name="Crouch Ability 3D" parent="." index="4" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
+[node name="CameraOnWin" type="Node3D" parent="." index="0" unique_id=2068749882]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 5)
+script = ExtResource("3_mamfr")
+tween_resource = SubResource("Resource_1nynx")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Crouch Ability 3D" parent="." index="5" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
 collision = NodePath("../Collision")
 head_check = NodePath("../Head Check")
 
@@ -92,31 +102,31 @@ remote_path = NodePath("../../PlayerVisualRoot/blockbench_export/root/Waist/Head
 update_position = false
 update_scale = false
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9" unique_id=967940243]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="10" unique_id=967940243]
 delta_interval = 0.01
 replication_config = SubResource("SceneReplicationConfig_elntb")
 
-[node name="Nametag" type="Label3D" parent="." index="10" unique_id=787512276]
+[node name="Nametag" type="Label3D" parent="." index="11" unique_id=787512276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2554885, 0)
 billboard = 1
 no_depth_test = true
 text = "Tester"
 
-[node name="Ranking" type="Label3D" parent="." index="11" unique_id=948623207]
+[node name="Ranking" type="Label3D" parent="." index="12" unique_id=948623207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6710804, 0)
 billboard = 1
 no_depth_test = true
 text = "loser"
 font_size = 77
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="12" unique_id=80266036]
+[node name="AnimationTree" type="AnimationTree" parent="." index="13" unique_id=80266036]
 process_mode = 3
 root_node = NodePath("../PlayerVisualRoot/blockbench_export")
 tree_root = SubResource("AnimationNodeBlendTree_xgtsh")
 anim_player = NodePath("../PlayerVisualRoot/blockbench_export/AnimationPlayer")
 parameters/Blend2/blend_amount = 0.0
 
-[node name="PlayerVisualRoot" type="Node3D" parent="." index="13" unique_id=2025236611 node_paths=PackedStringArray("color_meshes")]
+[node name="PlayerVisualRoot" type="Node3D" parent="." index="14" unique_id=2025236611 node_paths=PackedStringArray("color_meshes")]
 script = ExtResource("5_xgtsh")
 color_meshes = [NodePath("blockbench_export/root/Waist/Head2/Hat Layer"), NodePath("blockbench_export/root/Waist/Body2/Body Layer"), NodePath("blockbench_export/root/Waist/Right Arm2/Right Arm Layer"), NodePath("blockbench_export/root/Waist/Left Arm2/Left Arm Layer"), NodePath("blockbench_export/root/Right Leg2/Right Leg Layer"), NodePath("blockbench_export/root/Left Leg2/Left Leg Layer")]
 metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
@@ -124,13 +134,13 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 [node name="blockbench_export" parent="PlayerVisualRoot" index="0" unique_id=2079496628 instance=ExtResource("6_xgtsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="root" parent="PlayerVisualRoot/blockbench_export" index="0" unique_id=309177971]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+[node name="Head2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="0" unique_id=892588430]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.75, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="2" unique_id=1418564043]
-transform = Transform3D(-0.9396926, -0.34202012, 0, 0.3420202, -0.9396924, 0, 0, 0, 0.99999976, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9997854, 0.020702891, 0, -0.020702891, 0.9997854, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="3" unique_id=889369645]
-transform = Transform3D(-4.371139e-08, 0.99999976, 0, -1, -4.3711378e-08, 0, 0, 0, 0.99999976, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9997854, -0.020702891, 0, 0.020702891, 0.9997854, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]
