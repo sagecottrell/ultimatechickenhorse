@@ -47,6 +47,7 @@ func _ready():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		$Head/FirstPersonCamera.priority = 100
 		SignalBus.on_local_win.connect(on_win.rpc)
+		$PlayerVisualRoot.hide_meshes()
 	
 	$PlayerVisualRoot.player_color = player_color
 	$Nametag.text = player_name
@@ -118,6 +119,7 @@ func walk(blendtime: float = 0.3):
 func on_win():
 	if is_self:
 		$CameraOnWin.priority = 200
+		$PlayerVisualRoot.show_meshes()
 	movement_locked = true
 	$Head.rotation = Vector3.ZERO
 	var anim: AnimationPlayer = anim_tree.get_node(anim_tree.anim_player)
@@ -125,3 +127,5 @@ func on_win():
 	await anim.animation_finished
 	movement_locked = false
 	$CameraOnWin.priority = 0
+	if is_self:
+		$PlayerVisualRoot.hide_meshes()

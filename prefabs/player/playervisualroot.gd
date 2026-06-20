@@ -2,6 +2,7 @@ class_name PlayerVisualRoot
 extends Node3D
 
 @export var color_meshes: Array[MeshInstance3D]
+var all_meshes: Array[Node]
 
 @export var player_color: Color:
 	set(value):
@@ -13,6 +14,17 @@ extends Node3D
 
 func _ready():
 	apply_color()
+	all_meshes = find_children("", "MeshInstance3D")
+
+func hide_meshes():
+	for child in all_meshes:
+		if child is MeshInstance3D:
+			child.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+
+func show_meshes():
+	for child in all_meshes:
+		if child is MeshInstance3D:
+			child.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 
 func apply_color():
 	for mesh in color_meshes:
