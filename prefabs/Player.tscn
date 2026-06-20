@@ -1,13 +1,14 @@
-[gd_scene format=3 uid="uid://bf600sfpstu3e"]
+[gd_scene format=3 uid="uid://bovaqvn3hwxp2"]
 
-[ext_resource type="PackedScene" uid="uid://8oy3xm2sff8" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_wuy1y"]
-[ext_resource type="Script" uid="uid://bm7pjd2tyd4wt" path="res://prefabs/player/player.gd" id="2_1nynx"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_64pgi"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_0ep8a"]
-[ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="5_70wo7"]
+[ext_resource type="PackedScene" uid="uid://8oy3xm2sff8" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_dgc4i"]
+[ext_resource type="Script" uid="uid://bm7pjd2tyd4wt" path="res://prefabs/player/player.gd" id="2_1kmib"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_mamfr"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_xgtsh"]
+[ext_resource type="Script" uid="uid://c4mo7inp0b5q0" path="res://prefabs/player/playervisualroot.gd" id="5_xgtsh"]
+[ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="6_xgtsh"]
 
 [sub_resource type="Resource" id="Resource_mamfr"]
-script = ExtResource("4_0ep8a")
+script = ExtResource("4_xgtsh")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
 properties/0/path = NodePath(".:position")
@@ -23,78 +24,6 @@ properties/3/path = NodePath(".:idling_ground")
 properties/3/spawn = true
 properties/3/replication_mode = 2
 
-[sub_resource type="Animation" id="Animation_revio"]
-resource_name = "idle-loop"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Waist/Skeleton3D:Right Arm")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.36666667, 1, 0.085223705, 0, 0, 0.99636185, 0.4, 1, 0.08280821, 0, 0, 0.9965655, 0.8333333, 1, 0.007272147, 0, 0, 0.99997365, 0.8666667, 1, 0.0014544392, 0, 0, 0.99999905, 0.9, 1, -0.004363306, 0, 0, 0.9999906, 1.3666667, 1, -0.08570675, 0, 0, 0.9963205, 1.4, 1, -0.08367784, 0, 0, 0.99649286, 1.9666667, 1, -0.004654189, 0, 0, 0.9999893, 2, 1, 0, 0, 0, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Waist/Skeleton3D:Left Arm")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.36666667, 1, -0.085223705, 0, 0, 0.99636185, 0.4, 1, -0.08280821, 0, 0, 0.9965655, 0.8333333, 1, -0.007272147, 0, 0, 0.99997365, 0.8666667, 1, -0.0014544392, 0, 0, 0.99999905, 0.9, 1, 0.004363306, 0, 0, 0.9999906, 1.3666667, 1, 0.08570675, 0, 0, 0.9963205, 1.4, 1, 0.08367784, 0, 0, 0.99649286, 1.9666667, 1, 0.004654189, 0, 0, 0.9999893, 2, 1, 0, 0, 0, 1)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Right Leg/Skeleton3D:Right Leg_2")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Left Leg/Skeleton3D:Left Leg_2")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_xfmlj"]
-resource_name = "walk-loop"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Waist/Skeleton3D:Right Arm")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, -0.2079117, 0, 0, 0.9781476, 0.13333334, 1, -0.2419219, 0, 0, 0.9702958, 0.23333333, 1, -0.03489948, 0, 0, 0.99939084, 0.36666667, 1, 0.24192192, 0, 0, 0.9702957, 0.4, 1, 0.20791167, 0, 0, 0.9781476, 0.46666667, 1, 0.06975646, 0, 0, 0.9975641, 0.5, 1, 0, 0, 0, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Waist/Skeleton3D:Left Arm")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0.2079117, 0, 0, 0.9781476, 0.13333334, 1, 0.2419219, 0, 0, 0.9702958, 0.23333333, 1, 0.03489948, 0, 0, 0.99939084, 0.36666667, 1, -0.24192192, 0, 0, 0.9702957, 0.4, 1, -0.20791167, 0, 0, 0.9781476, 0.46666667, 1, -0.06975646, 0, 0, 0.9975641, 0.5, 1, 0, 0, 0, 1)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Right Leg/Skeleton3D:Right Leg_2")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0.34202015, 0, 0, 0.9396926, 0.13333334, 1, 0.39607978, 0, 0, 0.9182162, 0.23333333, 1, 0.05814479, 0, 0, 0.9983082, 0.36666667, 1, -0.39607978, 0, 0, 0.9182161, 0.4, 1, -0.34202012, 0, 0, 0.9396927, 0.46666667, 1, -0.116092905, 0, 0, 0.99323845, 0.5, 1, 0, 0, 0, 1)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Left Leg/Skeleton3D:Left Leg_2")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, -0.34202015, 0, 0, 0.9396926, 0.13333334, 1, -0.39607978, 0, 0, 0.9182162, 0.23333333, 1, -0.05814479, 0, 0, 0.9983082, 0.36666667, 1, 0.39607978, 0, 0, 0.9182161, 0.4, 1, 0.34202012, 0, 0, 0.9396927, 0.46666667, 1, 0.116092905, 0, 0, 0.99323845, 0.5, 1, 0, 0, 0, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gt5yq"]
-_data = {
-&"idle": SubResource("Animation_revio"),
-&"walk": SubResource("Animation_xfmlj")
-}
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1kmib"]
 animation = &"walk"
 
@@ -105,7 +34,6 @@ animation = &"idle"
 filters = ["Left Leg2", "Right Leg2", "Waist/Left Arm2", "Waist/Right Arm2"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xgtsh"]
-graph_offset = Vector2(-25.809937, 85.06003)
 nodes/output/position = Vector2(600, 80)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_35c0j")
 nodes/Animation/position = Vector2(140, 100)
@@ -115,9 +43,9 @@ nodes/Blend2/position = Vector2(360, 60)
 "nodes/Animation 2/position" = Vector2(140, 360)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
 
-[node name="Player" unique_id=1167805719 instance=ExtResource("1_wuy1y")]
+[node name="Player" unique_id=1167805719 node_paths=PackedStringArray("anim_tree") instance=ExtResource("1_dgc4i")]
 collision_layer = 2
-script = ExtResource("2_1nynx")
+script = ExtResource("2_1kmib")
 input_back_action_name = "move_backward"
 input_forward_action_name = "move_forward"
 input_left_action_name = "move_left"
@@ -125,6 +53,7 @@ input_right_action_name = "move_right"
 input_sprint_action_name = "move_sprint"
 input_jump_action_name = "move_jump"
 input_crouch_action_name = "move_crouch"
+anim_tree = NodePath("AnimationTree")
 underwater_env = null
 idling_ground = false
 player_color = Color(0, 0, 0, 1)
@@ -134,27 +63,29 @@ player_name = ""
 collision = NodePath("../Collision")
 head_check = NodePath("../Head Check")
 
-[node name="Head" parent="." index="8" unique_id=1782836025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, -0.25372723)
-
-[node name="Head Bob" parent="Head" index="0" unique_id=1006493639 node_paths=PackedStringArray("head")]
+[node name="Head Bob" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="0" unique_id=1006493639 node_paths=PackedStringArray("head")]
 head = NodePath("../FirstPersonCamera")
 
-[node name="FirstPersonCamera" type="Node3D" parent="Head" index="2" unique_id=770272565]
+[node name="FirstPersonCamera" type="Node3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="1" unique_id=770272565]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
-script = ExtResource("3_64pgi")
+script = ExtResource("3_mamfr")
 priority = 1
 look_at_mode = 1
 tween_resource = SubResource("Resource_mamfr")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="ThirdPersonCamera" type="Node3D" parent="Head" index="3" unique_id=475707984]
+[node name="ThirdPersonCamera" type="Node3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="2" unique_id=475707984]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-script = ExtResource("3_64pgi")
+transform = Transform3D(1, 0, 0, 0, 0.97888094, 0.20443141, 0, -0.20443141, 0.97888094, 0, 1.2269084, 2.891844)
+script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_mamfr")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="3" unique_id=2137948890]
+remote_path = NodePath("../../PlayerVisualRoot/blockbench_export/root/Waist/Head2")
+update_position = false
+update_scale = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9" unique_id=967940243]
 delta_interval = 0.01
@@ -166,39 +97,32 @@ billboard = 1
 no_depth_test = true
 text = "Tester"
 
-[node name="Ranking" type="Label3D" parent="." index="11" unique_id=165637101]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6034306, 0)
+[node name="Ranking" type="Label3D" parent="." index="11" unique_id=948623207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6710804, 0)
 billboard = 1
 no_depth_test = true
 text = "loser"
-font_size = 92
+font_size = 77
 
-[node name="VisualRoot" type="Node3D" parent="." index="12" unique_id=1340713338]
-
-[node name="model" parent="VisualRoot" index="0" unique_id=1858941949 instance=ExtResource("5_70wo7")]
+[node name="AnimationTree" type="AnimationTree" parent="." index="12" unique_id=80266036]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="LookatModifier" type="LookAtModifier3D" parent="VisualRoot/model/Head/Skeleton3D" parent_id_path=PackedInt32Array(1858941949, 1307811513) index="1" unique_id=1745045964]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-target_node = NodePath("../../../../../Head/LookatTarget")
-bone_name = "Head_2"
-bone = 0
-forward_axis = 5
-
-[node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(1858941949, 544021897) index="0" unique_id=1027408157]
-bones/2/rotation = Quaternion(0.01649215, 0, 0, 0.9998641)
-bones/3/rotation = Quaternion(-0.01649215, 0, 0, 0.9998641)
-
-[node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=1025116469]
-process_mode = 3
-libraries/ = SubResource("AnimationLibrary_gt5yq")
-
-[node name="AnimationTree" type="AnimationTree" parent="VisualRoot" index="1" unique_id=80266036]
-process_mode = 3
-root_node = NodePath("../model")
+root_node = NodePath("../PlayerVisualRoot/blockbench_export")
 tree_root = SubResource("AnimationNodeBlendTree_xgtsh")
-anim_player = NodePath("../model/AnimationPlayer")
+anim_player = NodePath("../PlayerVisualRoot/blockbench_export/AnimationPlayer")
 parameters/Blend2/blend_amount = 0.0
 
-[editable path="VisualRoot/model"]
+[node name="PlayerVisualRoot" type="Node3D" parent="." index="13" unique_id=2025236611 node_paths=PackedStringArray("color_meshes")]
+script = ExtResource("5_xgtsh")
+color_meshes = [NodePath("blockbench_export/root/Waist/Head2/Hat Layer"), NodePath("blockbench_export/root/Waist/Body2/Body Layer"), NodePath("blockbench_export/root/Waist/Right Arm2/Right Arm Layer"), NodePath("blockbench_export/root/Waist/Left Arm2/Left Arm Layer"), NodePath("blockbench_export/root/Right Leg2/Right Leg Layer"), NodePath("blockbench_export/root/Left Leg2/Left Leg Layer")]
+metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
+
+[node name="blockbench_export" parent="PlayerVisualRoot" index="0" unique_id=2079496628 instance=ExtResource("6_xgtsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 2126829516) index="2" unique_id=636287267]
+transform = Transform3D(1, 0, 0, 0, 0.9973791, 0.07235067, 0, -0.07235067, 0.9973791, 0.3125, 0.625, 0)
+
+[node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 2126829516) index="3" unique_id=630228666]
+transform = Transform3D(1, 0, 0, 0, 0.9973791, -0.07235067, 0, 0.07235067, 0.9973791, -0.3125, 0.625, 0)
+
+[editable path="PlayerVisualRoot/blockbench_export"]

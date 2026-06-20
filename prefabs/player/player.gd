@@ -1,9 +1,6 @@
 class_name Player 
 extends FPSController3D
 
-@onready var animplayer: AnimationPlayer = $VisualRoot/model/AnimationPlayer
-
-
 @export var input_back_action_name := "move_backward"
 @export var input_forward_action_name := "move_forward"
 @export var input_left_action_name := "move_left"
@@ -11,6 +8,8 @@ extends FPSController3D
 @export var input_sprint_action_name := "move_sprint"
 @export var input_jump_action_name := "move_jump"
 @export var input_crouch_action_name := "move_crouch"
+
+@export var anim_tree: AnimationTree
 
 @export var underwater_env: Environment
 
@@ -44,21 +43,12 @@ func _ready():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		$Head/FirstPersonCamera.priority = 100
 	
-	_apply_color($VisualRoot/model/Head/Skeleton3D/Head)
-	_apply_color($VisualRoot/model/Waist/Skeleton3D/Waist)
-	_apply_color($"VisualRoot/model/Right Leg/Skeleton3D/Right Leg")
-	_apply_color($"VisualRoot/model/Left Leg/Skeleton3D/Left Leg")
+	$PlayerVisualRoot.player_color = player_color
 	$Nametag.text = player_name
 	$Ranking.text = ""
 	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
-
-func _apply_color(mesh: MeshInstance3D):
-	var mat: StandardMaterial3D = mesh.get_active_material(1).duplicate()
-	mat.albedo_color = player_color
-	mesh.set_surface_override_material(1, mat)
-	mesh.mesh.get_surface_count()
 
 func set_rank(rank: String):
 	$Ranking.text = rank
@@ -99,9 +89,17 @@ func _input(event: InputEvent) -> void:
 
 func idle(blendtime: float = 0.3):
 	var tween = get_tree().create_tween()
-	tween.tween_property($VisualRoot/AnimationTree, "parameters/Blend2/blend_amount", 0, blendtime)
+	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 0, blendtime)
 
 func walk(blendtime: float = 0.3):
 	var tween = get_tree().create_tween()
-	tween.tween_property($VisualRoot/AnimationTree, "parameters/Blend2/blend_amount", 1.0, blendtime)
+	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 1.0, blendtime)
 	
+func spin():
+	var tween = get_tree().create_tween()
+	$Head/ThirdPersonCamera.priority_override = true
+	tween.tween_property(self, "rotation", Vector3(0, 720, 0), 0.5)
+	get_node(anim_tree.anim_player).play("")
+
+func reset_spin():
+	$Head/FirstPersonCamera.priority_override = false

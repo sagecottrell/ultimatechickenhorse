@@ -4,13 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://w413hrs7f8nf" path="res://prefabs/player_spawn/spawn.gltf" id="2_xhgq5"]
 [ext_resource type="Material" uid="uid://bgydemcehiqgj" path="res://prefabs/player_spawn/spawn_marker_material.tres" id="3_err2u"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_vccua"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.8886719
+
 [node name="PlayerSpawn" type="Node3D" unique_id=1298073336]
 script = ExtResource("1_jef56")
 
 [node name="blockbench_export" parent="." unique_id=609940373 instance=ExtResource("2_xhgq5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6987872, 0)
 
-[node name="armature" parent="blockbench_export/root/armature/Skeleton3D" parent_id_path=PackedInt32Array(609940373, 1361740011) index="0" unique_id=1323325056]
+[node name="armature" parent="blockbench_export/root/armature/Skeleton3D" parent_id_path=PackedInt32Array(609940373, 170792715) index="0" unique_id=554986019]
 surface_material_override/0 = ExtResource("3_err2u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="blockbench_export" unique_id=671395896]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.68679225, -0.55566406)
+mesh = SubResource("CylinderMesh_vccua")
 
 [editable path="blockbench_export"]
