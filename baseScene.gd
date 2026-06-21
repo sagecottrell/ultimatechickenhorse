@@ -11,7 +11,6 @@ func _ready():
 	if multiplayer.get_unique_id() == 1:
 		spawn_players()
 		cameras.assign(find_children("PhantomCamera3D*", "", false, true))
-		print(cameras)
 		SignalBus.on_cam_switch.connect(_on_cam_switch)
 
 func spawn_player(info: Dictionary):
@@ -51,7 +50,6 @@ func _on_star_collide(player: Player) -> void:
 	SignalBus.local_win()
 	
 func _on_cam_switch(pid: int, increase: bool):
-	prints("oncamswitch", pid, increase)
 	if pid != 1:
 		cameras[server_camera_index].priority = 0
 		server_camera_index = -1

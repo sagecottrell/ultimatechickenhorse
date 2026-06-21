@@ -29,10 +29,6 @@ glow_enabled = true
 script = ExtResource("7_k8yl0")
 duration = 0.0
 
-[sub_resource type="GDScript" id="GDScript_pxpqt"]
-script/source = "extends MultiplayerSpawner
-"
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1nuv2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8yl0"]
@@ -92,7 +88,6 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2070496638]
 spawn_path = NodePath("..")
-script = SubResource("GDScript_pxpqt")
 
 [node name="deathplane" type="Area3D" parent="." unique_id=1015344977]
 collision_layer = 0
