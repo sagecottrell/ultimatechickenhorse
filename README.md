@@ -12,12 +12,13 @@
 - [ ] simple enemy that follows the player, force player to respawn
 - [ ] player HP
 - [ ] sounds
+- [ ] player death animation
 - [ ] more prefabs
 	- [ ] static obstacles of various shapes
 		- [X] trees
-		- [ ] rocks
-		- [ ] cubes
-		- [ ] nuclear cube
+		- [X] rocks
+		- [X] cubes
+		- [X] nuclear cube
 - [ ] example scenes
 	- [X] gravity area
 	- [ ] CSG cave using path3d
