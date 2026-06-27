@@ -1,14 +1,74 @@
 [gd_scene format=3 uid="uid://ck23wxn4q834b"]
 
 [ext_resource type="PackedScene" uid="uid://dnok8ihpiy8f1" path="res://prefabs/simpleEnemy/simpleEnemy.gltf" id="1_0ce06"]
+[ext_resource type="Script" uid="uid://bdk2a1ic3ytvm" path="res://prefabs/simpleEnemy/simple_enemy.gd" id="1_iphls"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vccua"]
 height = 1.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_be54d"]
+height = 3.0
+radius = 4.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uuyo2"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iphls"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0qmr4"]
+animation = &"jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uuyo2"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p26sh"]
+advance_mode = 2
+advance_expression = "state == State.jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ndv40"]
+advance_mode = 2
+advance_expression = "state == State.idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iphls"]
+advance_mode = 2
+advance_expression = "state == State.idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iphls"]
+states/End/position = Vector2(811, 148)
+states/Start/position = Vector2(132, 148)
+states/idle/node = SubResource("AnimationNodeAnimation_uuyo2")
+states/idle/position = Vector2(453, 50)
+states/jump/node = SubResource("AnimationNodeAnimation_iphls")
+states/jump/position = Vector2(352, 148)
+states/jumping/node = SubResource("AnimationNodeAnimation_0qmr4")
+states/jumping/position = Vector2(574, 148)
+transitions = ["jump", "jumping", SubResource("AnimationNodeStateMachineTransition_uuyo2"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_p26sh"), "jumping", "idle", SubResource("AnimationNodeStateMachineTransition_ndv40"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_iphls")]
+
 [node name="SimpleEnemy" type="CharacterBody3D" unique_id=508805129]
+velocity = Vector3(0, -289.09567, 0)
+script = ExtResource("1_iphls")
 
 [node name="blockbench_export" parent="." unique_id=1399087127 instance=ExtResource("1_0ce06")]
+
+[node name="head" parent="blockbench_export/root" parent_id_path=PackedInt32Array(1399087127, 1850024831) index="2" unique_id=1063606876]
+transform = Transform3D(1, 0, 0, 0, 0.9993528, -0.03596724, 0, 0.03596724, 0.9993528, 0, 0.125, 0.1875)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1332645728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_vccua")
+
+[node name="Aggro" type="Area3D" parent="." unique_id=226319516]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Aggro" unique_id=868084982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CylinderShape3D_be54d")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=453119705]
+root_node = NodePath("../blockbench_export")
+tree_root = SubResource("AnimationNodeStateMachine_iphls")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../blockbench_export/AnimationPlayer")
+
+[editable path="blockbench_export"]
