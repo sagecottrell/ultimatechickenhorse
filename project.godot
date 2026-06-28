@@ -38,8 +38,13 @@ enabled=PackedStringArray("res://addons/character-controller/plugin.cfg", "res:/
 folder_colors={
 "res://debug/": "yellow",
 "res://icons/": "gray",
+"res://prefabs/": "green",
 "res://watch_folder/": "pink"
 }
+
+[global_group]
+
+icy=""
 
 [gui]
 

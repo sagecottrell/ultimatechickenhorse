@@ -41,6 +41,8 @@ func spawn_players():
 func _on_deathplane_body_entered(body: Node3D) -> void:
 	if body is Player:
 		body._reset()
+	elif body is CharacterBody3D:
+		body.queue_free()
 
 
 func _on_star_collide(player: Player) -> void:

@@ -27,6 +27,9 @@ signal on_unstuck()
 ## when the local player should die
 signal on_die()
 
+## when the local player gets hurt
+signal on_hurt(amount: int)
+
 ## show a countdown in the middle of the screen. will be called multiple times
 ## length is the maximum mount of time to display this text. must greater than zero. newer countdowns will hide this early
 ## final=true for the last part of the countdown (usually a "GO!" or something)
@@ -78,6 +81,9 @@ func unstuck():
 
 func die():
 	on_die.emit()
+
+func hurt(amount: int = 1):
+	on_hurt.emit(amount)
 
 @rpc("call_local")
 func countdown(display: String, length: float, final: bool):
