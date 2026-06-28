@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctu0tv55em4e3"
-path.s3tc="res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.s3tc.ctex"
-path.etc2="res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.etc2.ctex"
+uid="uid://bwmfsca3rst66"
+path.bptc="res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.bptc.ctex"
+path.astc="res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.astc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,13 +12,13 @@ metadata={
 
 [deps]
 
-source_file="res://prefabs/octagon/octagonmaterial_albedo.png"
-dest_files=["res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.s3tc.ctex", "res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.etc2.ctex"]
+source_file="res://prefabs/ice_cube/Ice003_1K-PNG_Color.png"
+dest_files=["res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.bptc.ctex", "res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.astc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

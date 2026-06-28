@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctu0tv55em4e3"
-path.s3tc="res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.s3tc.ctex"
-path.etc2="res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.etc2.ctex"
+uid="uid://d3pf6wcjtcaxk"
+path.bptc="res://.godot/imported/Ice002_1K-PNG_Displacement.png-05954e9dad57a715778726efe663c1a9.bptc.ctex"
+path.astc="res://.godot/imported/Ice002_1K-PNG_Displacement.png-05954e9dad57a715778726efe663c1a9.astc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,18 +12,18 @@ metadata={
 
 [deps]
 
-source_file="res://prefabs/octagon/octagonmaterial_albedo.png"
-dest_files=["res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.s3tc.ctex", "res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.etc2.ctex"]
+source_file="res://prefabs/ice_cube/Ice002_1K-PNG_Displacement.png"
+dest_files=["res://.godot/imported/Ice002_1K-PNG_Displacement.png-05954e9dad57a715778726efe663c1a9.bptc.ctex", "res://.godot/imported/Ice002_1K-PNG_Displacement.png-05954e9dad57a715778726efe663c1a9.astc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
