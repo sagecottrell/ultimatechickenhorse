@@ -13,6 +13,7 @@ extends FPSController3D
 @onready var free_cam: PhantomCamera3D = $FreeCam
 @onready var win_cam: PhantomCamera3D = $CameraOnWin
 @onready var vis_root: PlayerVisualRoot = $PlayerVisualRoot
+@onready var hp: HealthManager = $HealthManager
 
 @export var input_back_action_name := "move_backward"
 @export var input_forward_action_name := "move_forward"
@@ -32,6 +33,8 @@ extends FPSController3D
 
 @export var spawn_point: Node3D
 
+@export var invuln_length: float = 1
+
 var movement_locked : bool
 var camera_locked : bool
 var is_self: bool
@@ -41,6 +44,7 @@ enum State {
 	dead=3,
 	swim=5,
 	sprint=6,
+	win=7,
 }
 
 @export_category("State")
@@ -76,6 +80,7 @@ func _reset():
 	global_transform = spawn_point.global_transform
 	velocity = Vector3.ZERO
 	state = State.idle
+	hp.reset()
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -86,7 +91,7 @@ func _ready():
 	is_self = name.to_int() == multiplayer.get_unique_id()
 	
 	if is_multiplayer_authority():
-		SignalBus.on_local_win.connect(on_win.rpc)
+		SignalBus.on_local_win.connect(on_win)
 		SignalBus.on_countdown.connect(on_countdown)
 		switch_to_fp_or_tp_cam()
 		movement_locked = true  # start locked, the server will send an unlock signal
@@ -95,6 +100,13 @@ func _ready():
 		uncrouched.connect(func(): crouch = false)
 		sprinted.connect(func(): state = State.sprint)
 		submerged.connect(func(): state = State.swim)
+		
+		SignalBus.on_hurt.connect(hp.hurt)
+		SignalBus.on_die.connect(_on_die)
+		SignalBus.on_respawn.connect(_reset)
+		hp.on_hurt.connect(_on_hurt)
+		hp.on_die.connect(SignalBus.die) ## these signals may seem redundant, but it's important to include the signal bus in the process
+		hp.current_hp.connect(SignalBus.client_player_hp)
 	else:
 		SignalBus.on_cam_switch.connect(on_cam_switch)
 	
@@ -193,21 +205,42 @@ func switch_to_win_cam():
 	win_cam.priority = 200
 
 
-@rpc("call_local")
+var hurt_timer: SceneTreeTimer
+func _on_hurt(_amount: int):
+	hurt = true
+	if hurt_timer:
+		hurt_timer.time_left = invuln_length
+		return
+	hp.invulnerable = true
+	hurt_timer = get_tree().create_timer(invuln_length)
+	await hurt_timer.timeout
+	hp.invulnerable = false
+	hurt = false
+	hurt_timer = null
+
+func _on_die():
+	if state == State.dead:
+		return
+	state = State.dead
+	movement_locked = true
+	var tween = create_tween()
+	tween.tween_method(func (v): SignalBus.respawn_timer(v, 2.0), 2.0, 0.0, 2)
+	await tween.finished
+	movement_locked = false
+	SignalBus.respawn()
+
 func on_win():
-	if is_self:
-		switch_to_win_cam()
-		camera_locked = true
-		movement_locked = true
-		head.actual_rotation.x = 0
-		head.rotation = Vector3.ZERO
-	var anim: AnimationPlayer = anim_tree.get_node(anim_tree.anim_player)
-	anim.play("win")
-	await anim.animation_finished
-	if is_self:
-		camera_locked = false
-		movement_locked = false
-		switch_to_fp_or_tp_cam()
+	switch_to_win_cam()
+	camera_locked = true
+	movement_locked = true
+	head.actual_rotation.x = 0
+	head.rotation = Vector3.ZERO
+	state = State.win
+	await anim_tree.animation_finished
+	state = State.idle
+	camera_locked = false
+	movement_locked = false
+	switch_to_fp_or_tp_cam()
 
 func on_cam_switch(pid: int, fp: bool):
 	if pid != name.to_int():

@@ -9,10 +9,10 @@
 
 ## todo
 
-- [ ] simple enemy that follows the player, force player to respawn
-- [ ] player HP
+- [X] simple enemy that follows the player, force player to respawn
+- [X] player HP
 - [ ] sounds
-- [ ] player death animation
+- [X] player death animation
 - [ ] more prefabs
 	- [ ] static obstacles of various shapes
 		- [X] trees
@@ -30,3 +30,6 @@
 - [X] countdown
 	- [X] player unlock button
 - [ ] client disconnect logic
+
+## bugs
+- [ ] enemy hurt player only on first contact, not prolonged contact

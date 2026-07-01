@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://64jhduej8yio" path="res://client/client_gui.gd" id="1_6i4td"]
 [ext_resource type="PackedScene" uid="uid://do4twu8peuk88" path="res://client/spinnycube.tscn" id="1_258n8"]
+[ext_resource type="PackedScene" uid="uid://c8shjom1y8o36" path="res://client/HitpointDisplay.tscn" id="2_0sjya"]
 [ext_resource type="Texture2D" uid="uid://c6ahqcj8kboeq" path="res://prefabs/player/player.png" id="2_50si4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vccua"]
@@ -12,16 +13,39 @@ shadow_size = 85
 shadow_color = Color(0, 0, 0, 0.09411765)
 shadow_offset = Vector2(10.735, 10.83)
 
+[sub_resource type="Gradient" id="Gradient_ueb45"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.2, 0, 0, 0.4862745)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6i4td"]
+gradient = SubResource("Gradient_ueb45")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6i4td"]
+font_size = 90
+
+[sub_resource type="Gradient" id="Gradient_6i4td"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ueb45"]
+gradient = SubResource("Gradient_6i4td")
+fill_to = Vector2(0.36324787, 0.33333334)
+
+[sub_resource type="Gradient" id="Gradient_0sjya"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u0bqd"]
+gradient = SubResource("Gradient_0sjya")
+fill = 1
+fill_from = Vector2(0.517094, 0.47435898)
+
 [node name="ClientGUI" type="CanvasLayer" unique_id=489950663]
 script = ExtResource("1_6i4td")
 
 [node name="ingame" type="Control" parent="." unique_id=969123230]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
-[node name="Label" type="Label" parent="ingame" unique_id=1753596854]
+[node name="countdownDisplay" type="Label" parent="ingame" unique_id=1753596854]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -29,7 +53,68 @@ label_settings = SubResource("LabelSettings_vccua")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="urdead" type="Control" parent="ingame" unique_id=956102906]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="ingame/urdead" unique_id=1021768357]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_6i4td")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ingame/urdead" unique_id=1633035230]
+layout_mode = 0
+offset_top = 233.0
+offset_right = 1152.0
+offset_bottom = 420.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ingame/urdead/VBoxContainer" unique_id=799182739]
+layout_mode = 2
+size_flags_vertical = 1
+text = "you died."
+label_settings = SubResource("LabelSettings_6i4td")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ingame/urdead/VBoxContainer" unique_id=1404832171]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ingame/urdead/VBoxContainer/PanelContainer" unique_id=1259111997]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ingame/urdead/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1883063008]
+layout_mode = 2
+text = "respawn"
+
+[node name="RespawnTimerDisplay" type="TextureProgressBar" parent="ingame/urdead/VBoxContainer/PanelContainer/VBoxContainer" unique_id=776306391]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+fill_mode = 4
+texture_under = SubResource("GradientTexture2D_ueb45")
+texture_progress = SubResource("GradientTexture2D_u0bqd")
+tint_progress = Color(0.5921569, 1, 0.4, 1)
+
+[node name="HitpointDisplay" parent="ingame" unique_id=1501502230 instance=ExtResource("2_0sjya")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -15.0
+offset_top = -112.0
+offset_right = 17.0
+offset_bottom = -80.0
+grow_vertical = 0
+
 [node name="waitingroom" type="Control" parent="." unique_id=1738976274]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -45,7 +130,7 @@ stretch = true
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Spinnycube" parent="waitingroom/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("1_258n8")]
 
@@ -58,6 +143,7 @@ offset_bottom = 564.0
 text = "waiting on host..."
 
 [node name="levelswitch" type="Control" parent="." unique_id=727852054]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0

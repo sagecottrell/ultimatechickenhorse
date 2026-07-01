@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bm7pjd2tyd4wt" path="res://prefabs/player/player.gd" id="2_1kmib"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_mamfr"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_1nynx"]
+[ext_resource type="Script" uid="uid://7aw77s8t0acj" path="res://prefabs/health_manager.gd" id="5_0ep8a"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dk2kgdbwdv8d4" path="res://prefabs/player/mut-exclusive-states.tres" id="5_64pgi"]
 [ext_resource type="Script" uid="uid://c4mo7inp0b5q0" path="res://prefabs/player/playervisualroot.gd" id="5_xgtsh"]
 [ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="6_xgtsh"]
@@ -73,7 +74,10 @@ script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_1nynx")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Crouch Ability 3D" parent="." index="6" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
+[node name="HealthManager" type="Node" parent="." index="3" unique_id=968631098]
+script = ExtResource("5_0ep8a")
+
+[node name="Crouch Ability 3D" parent="." index="7" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
 collision = NodePath("../Collision")
 head_check = NodePath("../Head Check")
 
@@ -103,24 +107,24 @@ remote_path = NodePath("../../PlayerVisualRoot/blockbench_export/root/Waist/Head
 update_position = false
 update_scale = false
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="11" unique_id=967940243]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="12" unique_id=967940243]
 delta_interval = 0.01
 replication_config = SubResource("SceneReplicationConfig_elntb")
 
-[node name="Nametag" type="Label3D" parent="." index="12" unique_id=787512276]
+[node name="Nametag" type="Label3D" parent="." index="13" unique_id=787512276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2554885, 0)
 billboard = 1
 no_depth_test = true
 text = "Tester"
 
-[node name="Ranking" type="Label3D" parent="." index="13" unique_id=948623207]
+[node name="Ranking" type="Label3D" parent="." index="14" unique_id=948623207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6710804, 0)
 billboard = 1
 no_depth_test = true
 text = "loser"
 font_size = 77
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="14" unique_id=80266036]
+[node name="AnimationTree" type="AnimationTree" parent="." index="15" unique_id=80266036]
 process_mode = 3
 root_node = NodePath("../PlayerVisualRoot/blockbench_export")
 tree_root = ExtResource("5_64pgi")
@@ -133,7 +137,7 @@ parameters/TimeScale/scale = 1.5
 parameters/BlendCrouch/blend_amount = 0.0
 parameters/BlendHurt/blend_amount = 0.0
 
-[node name="PlayerVisualRoot" type="Node3D" parent="." index="15" unique_id=2025236611 node_paths=PackedStringArray("color_meshes")]
+[node name="PlayerVisualRoot" type="Node3D" parent="." index="16" unique_id=2025236611 node_paths=PackedStringArray("color_meshes")]
 script = ExtResource("5_xgtsh")
 color_meshes = [NodePath("blockbench_export/root/Waist/Head2/Hat Layer"), NodePath("blockbench_export/root/Waist/Body2/Body Layer"), NodePath("blockbench_export/root/Waist/Right Arm2/Right Arm Layer"), NodePath("blockbench_export/root/Waist/Left Arm2/Left Arm Layer"), NodePath("blockbench_export/root/Right Leg2/Right Leg Layer"), NodePath("blockbench_export/root/Left Leg2/Left Leg Layer")]
 metadata/_custom_type_script = "uid://c4mo7inp0b5q0"

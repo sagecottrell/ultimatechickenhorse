@@ -40,7 +40,8 @@ func spawn_players():
 
 func _on_deathplane_body_entered(body: Node3D) -> void:
 	if body is Player:
-		body._reset()
+		if body.is_multiplayer_authority():
+			SignalBus.hurt(1000)
 	elif body is CharacterBody3D:
 		body.queue_free()
 
